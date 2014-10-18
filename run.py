@@ -7,7 +7,11 @@ sys.path.append(g_vars['templates_path'])
 from app import app as application
 import app.all_imports
 
+import app.db_funcs.main
+
+
 if __name__ == "__main__":
-	application.run(debug=True)
+    pass
+    application.run(debug=True)
 
 

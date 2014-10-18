@@ -1,1 +1,110 @@
-main
+import MySQLdb
+from app.settings import g_vars
+from app.oth_funcs.logs import add_to_log
+
+def db_con():
+    return MySQLdb.connect( host=g_vars['mysql_server'],
+                            user=g_vars['mysql_user'],
+                            passwd=g_vars['mysql_passwd'],
+                            db=g_vars['mysql_database'] )
+
+# def add_mes(author, text):
+#     db = db_con()
+#     cur = db.cursor()
+#     cur.execute("INSERT INTO `messages` (`author`, `text`) VALUES ('{0}', '{1}')".format(author, text))
+#     db.commit()
+#     cur.close()
+#     db.close()
+#     return 1
+
+def all_users():
+    res = []
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("SELECT `id`, `name` FROM `users`")
+
+    for u in cur.fetchall():
+        d = dict()
+        d['login'] = u[1].decode("utf-8")
+        d['id'] = u[0]
+        res.append(d)
+
+    cur.close()
+    db.close()
+
+    return  res
+
+
+def to_utf8(obj):
+    return obj.encode('utf-8')
+
+
+
+def add_new_user(login=None, passwd=None, email=""):
+    if not login or not passwd: return False
+
+    if user_exist(login): return False
+
+    res = False
+    db = db_con()
+    cur = db.cursor()
+    #logs.add_to_log("try to create new user = {0}, email = {1}".format(str(login), str(email)))
+    cur.execute("INSERT INTO `users` (`name`, `passwd`, `email`) VALUES ('{0}', PASSWORD('{1}'), '{2}')".format(login, passwd, email))
+    db.commit()
+    res = True
+    cur.close()
+    db.close()
+    return res
+
+def  user_exist(login=None):
+    if not login: return False
+
+    res = False
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("SELECT (`id`) FROM `users` WHERE `name`='{0}'".format(login))
+
+    if cur.fetchall(): res = True
+
+    cur.close()
+    db.close()
+
+    return  res
+
+
+def try_login(login=None, passwd=None):
+    if not login or not passwd: return False
+
+    res = False
+    db = db_con()
+    cur = db.cursor()
+
+
+    cur.execute("SELECT (`id`) FROM `users` WHERE `name`='{0}' AND `passwd`=PASSWORD('{1}')".format(login, passwd))
+
+    if cur.fetchall(): res = True
+
+    cur.close()
+    db.close()
+
+    #add_to_log("try to login user = {0}, succuss".format(str(login)))
+    return  res
+
+
+
+
+# def get_mes(lasts=0):
+#     db = db_con()
+#     cur = db.cursor()
+#     if lasts:
+#         cur.execute("SELECT * FROM (SELECT * FROM `messages` ORDER BY id DESC LIMIT {0}) AS `table` ORDER BY id ASC".format(str(lasts)))
+#     else:
+#         cur.execute("SELECT * FROM `messages`")
+
+#     res=((row[0], row[1].decode('utf8'), row[2].decode('utf8')) for row in cur.fetchall())
+#     cur.close()
+#     db.close()
+#     return res
+
