@@ -37,7 +37,7 @@ args:
 """
 	sys.exit(0)
 
-folders_list = ['static', 
+folders_list = ['static',
 				'static/images',
 				'static/js',
 				'static/css',
@@ -48,7 +48,7 @@ folders_list = ['static',
 				'app/forms',
 				'app/db_funcs',
 				'app/oth_funcs',
-				'app/tempaltes',
+				'app/templates',
 				'log']
 
 log_files_list = ['log/log_file.log',
@@ -92,7 +92,7 @@ apache_lin_conf = """
 
 
 	LogFormat "%h %l %u %t \\"%r\\" %>s %b \\"%{{Referer}}i\\" \\"%{{User-agent}}i\\""
-	TransferLog  /var/www/proj/tr_chat/apache/log/access.log
+	TransferLog  {path}/apache/logs/access.log
 
 </VirtualHost>
 """
@@ -135,7 +135,7 @@ def delete_file(path):
 if create_all_foldes:
 	for f in folders_list:
 		check_create_dir(f)
-	
+
 
 #files
 if create_log_files:
