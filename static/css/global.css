@@ -1,0 +1,133 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+body {
+  line-height: 1;
+  color: black;
+  background: white;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q
+{
+  quotes: "" "";
+}
+a:focus, object:focus {
+  outline: none;
+}
+i, em {
+  font-style: italic;
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+.registration-form-wrapper,
+.login-form-wrapper {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  right: 50%;
+  top: 25%;
+  padding: 61px 34px;
+  border-radius: 14px;
+  margin-right: -119px;
+}
+.registration-form-wrapper input,
+.login-form-wrapper input {
+  display: block;
+}
+.registration-form-wrapper input[type="text"],
+.login-form-wrapper input[type="text"] {
+  width: 225px;
+  height: 38px;
+  font-size: 20px;
+  padding-left: 13px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 2px solid #0095C6;
+}
+.registration-form-wrapper input[type="submit"],
+.login-form-wrapper input[type="submit"] {
+  padding-top: 8px;
+  padding-bottom: 9px;
+  width: 241px;
+  background: linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
+  background: -moz-linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
+  background: -webkit-linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
+  background: -o-linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 20px;
+  cursor: pointer;
+}
+body.popup-active {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+a.exit {
+  padding-top: 1px;
+  font-size: 18px;
+  padding-left: 8px;
+  padding-right: 7px;
+  padding-bottom: 4px;
+  border-radius: 100%;
+  position: absolute;
+  top: -9px;
+  right: -12px;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #0095C6;
+  box-shadow: -1px 2px 3px #333333;
+  -webkit-box-shadow: -1px 2px 3px #333333;
+  -moz-box-shadow: -1px 2px 3px #333333;
+  font-weight: bold;
+}
+input[type="text"]::-webkit-input-placeholder {
+   color: #539AD9;
+}
+
+input[type="text"]:-moz-placeholder {
+   color: #539AD9;
+}
+
+input[type="text"]::-moz-placeholder {
+   color: #539AD9;
+}
+
+input[type="text"]:-ms-input-placeholder {
+   color: #539AD9;
+}

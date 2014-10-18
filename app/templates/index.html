@@ -4,24 +4,29 @@
   <title>G_VK</title>
   <link rel="stylesheet" type="text/css" href="/static/css/global.css">
   <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="/static/js/scripts.js"></script>
 </head>
 <body>
 <header>
-  <div class="registration-form">
-    <form method="post" name="login-form" action="/regist">
+  <div class="registration-form-wrapper form-wrapper">
+    <form method="post" name="registration-form" action="/regist">
       <input type="text" name="user" placeholder="Enter your name">
       <input type="text" name="pass" placeholder="Enter your password">
       <input type="text" name="re_pass" placeholder="Repeat your password">
       <input type="submit" name="register" value="Register">
     </form>
+  <a class="exit" href="#">x</a>
   </div>
-  <div class="login-form">
+  <a class="registration" href="#">Registration</a>
+  <div class="login-form-wrapper form-wrapper">
     <form method="post" name="login-form" action="/login">
       <input type="text" name="user" placeholder="Enter your name">
       <input type="text" name="pass" placeholder="Enter your password">
       <input type="submit" name="login" value="Login">
     </form>
+  <a class="exit" href="#">x</a>
   </div>
+  <a class="login" href="#">Login</a>
 </header>
 <div class="main-contnent"></div>
 <footer></footer>

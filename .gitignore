@@ -37,4 +37,4 @@ Thumbs.db
 #directories
 apache/h.conf
 apache/log/*
-app/temlates/static
+app/templates/static/
