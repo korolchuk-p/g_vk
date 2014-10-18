@@ -1,6 +1,6 @@
 from app import app
 import json
-
+from flask import Flask, render_template
 
 
 
@@ -8,6 +8,10 @@ import json
 def test():
 	return "+"
 
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['POST'])
