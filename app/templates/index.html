@@ -12,9 +12,9 @@
 <header>
   <div class="registration-form-wrapper form-wrapper">
     <form method="post" name="registration-form" action="/regist">
-      <input type="text" name="user" placeholder="Enter your name">
-      <input type="text" name="pass" placeholder="Enter your password">
-      <input type="text" name="re_pass" placeholder="Repeat your password">
+      <input type="text" name="user" placeholder="Enter your name" required>
+      <input type="password" name="pass" placeholder="Enter your password" required>
+      <input type="password" name="re_pass" placeholder="Repeat your password"required>
       <input type="submit" name="register" value="Register">
     </form>
   <a class="exit" href="#">x</a>
@@ -22,8 +22,8 @@
   <a class="registration" href="#">Registration</a>
   <div class="login-form-wrapper form-wrapper">
     <form method="post" name="login-form" action="/login">
-      <input type="text" name="user" placeholder="Enter your name">
-      <input type="text" name="pass" placeholder="Enter your password">
+      <input type="text" name="user" placeholder="Enter your name" required>
+      <input type="password" name="pass" placeholder="Enter your password" required>
       <input type="submit" name="login" value="Login">
     </form>
   <a class="exit" href="#">x</a>
@@ -32,6 +32,7 @@
 </header>
 <div class="main-contnent"></div>
 <footer></footer>
+<div class="popup-background"></div>
 </body>
 </html>
 
