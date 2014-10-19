@@ -22,12 +22,13 @@ def all_users():
     db = db_con()
     cur = db.cursor()
 
-    cur.execute("SELECT `id`, `name` FROM `users`")
+    cur.execute("SELECT `id`, `name`, `access_status` FROM `users`")
 
     for u in cur.fetchall():
         d = dict()
-        d['login'] = u[1].decode("utf-8")
+        d['login'] = u[1].decode("utf-8") if u[1] else ""
         d['id'] = u[0]
+        d['status'] = u[2].decode("utf-8") if u[2] else ""
         res.append(d)
 
     cur.close()
@@ -92,8 +93,19 @@ def try_login(login=None, passwd=None):
     #add_to_log("try to login user = {0}, succuss".format(str(login)))
     return  res
 
+def get_user_status(login):
+    if not login: return False
+    if not user_exist(login): return False
 
+    db = db_con()
+    cur = db.cursor()
+    cur.execute("SELECT `access_status` FROM `users` WHERE `name`='{0}'".format(login))
+    a = cur.fetchall()
+    res = a[0][0] if a else ""
+    cur.close()
+    db.close()
 
+    return  res
 
 # def get_mes(lasts=0):
 #     db = db_con()

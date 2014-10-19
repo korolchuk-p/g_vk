@@ -6,5 +6,6 @@ app.secret_key = 'e5d3-bc79-56f6-9f66-913c-c76b-2abb-8f19-46cd-1b35-d15c-be39-38
 app.permanent_session_lifetime = timedelta(days=2000)
 
 import app.views.main
+import app.forms.main
 import app.views.handlers
 import app.views.static
