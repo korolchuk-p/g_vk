@@ -17,13 +17,3 @@ def get_css(files):
 @app.route('/static/js/<files>')
 def get_js(files):
     return send_from_directory(g_vars['static_js_path'], files)
-
-
-# @app.route('/favicon.png')
-# def get_ico():
-#     if 'login' in session:
-#         print "ds"
-#         return send_from_directory(g_vars['static_images_path'], "ico_logined.png")
-
-#     print "pe"
-#     return send_from_directory(g_vars['static_images_path'], "ico_not_logined.png")

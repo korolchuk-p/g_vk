@@ -106,7 +106,6 @@ $(document).ready(function() {
 
     login_form.fail(
         function() {
-            var mes = "";
             $('.error-message').remove();
             $(elemPass).before('<div class="error-message">Request error</div>');
         }
@@ -114,4 +113,49 @@ $(document).ready(function() {
     return false;
 
   });
+
+  $('.registration-form-wrapper input[name="user"]').keyup( function() {
+    var elemName = $(this);
+    var name = $(elemName).val();
+
+    if (name.length < 2) {
+      $('.error-message').remove();
+      $(elemName).before('<div class="error-message">field is required</div>');
+      return;
+    }
+    if (name.length > 32) {
+      $('.error-message').remove();
+      $(elemName).before('<div class="error-message">name is too long</div>');
+      return;
+    }
+
+    var check_login_form = $.post("/login_check"
+      ,{
+        user: name
+      }
+      , function(data) {
+        if ("success" in data){
+            $('.error-message').remove()
+            //console.log(data);
+        }
+        else {
+            var mes = "Error in name";
+            if ("error" in data)  mes = data["error"];
+            $('.error-message').remove();
+            $(elemName).before('<div class="error-message">' + mes + '</div>');
+        }
+      }
+      , "json"
+    );
+
+    check_login_form.fail(
+        function() {
+            $('.error-message').remove();
+            $(elemName).before('<div class="error-message">Request error</div>');
+        }
+    );
+
+
+  });
+
 });

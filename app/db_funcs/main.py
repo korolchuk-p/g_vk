@@ -8,14 +8,6 @@ def db_con():
                             passwd=g_vars['mysql_passwd'],
                             db=g_vars['mysql_database'] )
 
-# def add_mes(author, text):
-#     db = db_con()
-#     cur = db.cursor()
-#     cur.execute("INSERT INTO `messages` (`author`, `text`) VALUES ('{0}', '{1}')".format(author, text))
-#     db.commit()
-#     cur.close()
-#     db.close()
-#     return 1
 
 def all_users():
     res = []
@@ -50,7 +42,7 @@ def add_new_user(login=None, passwd=None, email=""):
     res = False
     db = db_con()
     cur = db.cursor()
-    #logs.add_to_log("try to create new user = {0}, email = {1}".format(str(login), str(email)))
+    logs.add_to_log("try to create new user = {0}, email = {1}".format(str(login), str(email)))
     cur.execute("INSERT INTO `users` (`name`, `passwd`, `email`) VALUES ('{0}', PASSWORD('{1}'), '{2}')".format(login, passwd, email))
     db.commit()
     res = True
@@ -90,7 +82,7 @@ def try_login(login=None, passwd=None):
     cur.close()
     db.close()
 
-    #add_to_log("try to login user = {0}, succuss".format(str(login)))
+    add_to_log("try to login user = {0}, {1}".format(str(login), "succuss" if res else "fail"))
     return  res
 
 def get_user_status(login):
@@ -107,16 +99,7 @@ def get_user_status(login):
 
     return  res
 
-# def get_mes(lasts=0):
-#     db = db_con()
-#     cur = db.cursor()
-#     if lasts:
-#         cur.execute("SELECT * FROM (SELECT * FROM `messages` ORDER BY id DESC LIMIT {0}) AS `table` ORDER BY id ASC".format(str(lasts)))
-#     else:
-#         cur.execute("SELECT * FROM `messages`")
 
-#     res=((row[0], row[1].decode('utf8'), row[2].decode('utf8')) for row in cur.fetchall())
-#     cur.close()
-#     db.close()
-#     return res
+#         cur.execute("SELECT * FROM (SELECT * FROM `messages` ORDER BY id DESC LIMIT {0}) AS `table` ORDER BY id ASC".format(str(lasts)))
+
 

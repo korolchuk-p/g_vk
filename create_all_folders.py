@@ -51,7 +51,7 @@ folders_list = ['static',
 				'app/templates',
 				'log']
 
-log_files_list = ['log/log_file.log',
+log_files_list = ['log/events.log',
 				  'apache/logs/error.log',
 				  'apache/logs/access.log']
 
@@ -79,7 +79,14 @@ apache_win_conf = """
 """
 
 apache_lin_conf = """
-<VirtualHost *:32520>
+Listen 80
+
+<Directory   {path}/>
+    AllowOverride None
+    Require all granted
+</Directory>
+
+<VirtualHost *:80>
 	ServerName aa.aa.aa
 
 	WSGIScriptAlias / {path}/{wsgi_file}.wsgi

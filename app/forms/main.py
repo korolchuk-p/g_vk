@@ -13,7 +13,6 @@ def login():
     passwd = request.form.get("pass", None)
     passwd = passwd.encode("utf-8") if passwd else passwd
 
-
     if (not passwd) or (not login):
         res['error'] = 'Login or password empty'
         return json.dumps(res)
@@ -54,6 +53,28 @@ def regitration():
 
     if not database.add_new_user(login, passwd, email):
         res['error'] = "User already exists"
+    else:
+        res['success'] = ""
+
+    return json.dumps(res)
+
+@app.route('/login_check', methods=['POST'])
+def login_check():
+    res = {}
+
+    login = request.form.get("user", None)
+    login = login.encode("utf-8") if login else login
+
+    if not login:
+        res['error'] = 'Login empty'
+        return json.dumps(res)
+
+    if len(login) < 2:
+        res['error'] = "Login hasn't right size"
+        return json.dumps(res)
+
+    if database.user_exist(login):
+        res['error'] = "Login already exists"
     else:
         res['success'] = ""
 
