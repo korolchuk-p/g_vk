@@ -42,7 +42,7 @@ def add_new_user(login=None, passwd=None, email=""):
     res = False
     db = db_con()
     cur = db.cursor()
-    logs.add_to_log("try to create new user = {0}, email = {1}".format(str(login), str(email)))
+    add_to_log("try to create new user = {0}, email = {1}".format(str(login), str(email)))
     cur.execute("INSERT INTO `users` (`name`, `passwd`, `email`, `access_status`) VALUES ('{0}', PASSWORD('{1}'), '{2}', 'user')".format(login, passwd, email))
     db.commit()
     res = True
