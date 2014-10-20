@@ -85,6 +85,31 @@ def login_check():
     return json.dumps(res)
 
 
+@decorators.access(['admin'])
+@app.route('/admin_tools/del_user', methods=['POST'])
+def del_user():
+    res = {}
+
+    user_login = request.form.get("user", None)
+    user_login = user_login.encode("utf-8") if user_login else user_login
+
+    user_id = request.form.get("id", None)
+
+    if not user_login and not user_id:
+        res['error'] = 'Login and id is empty'
+        return json.dumps(res)
+
+    if user_login:
+        user_id = ""
+    else:
+        user_login = ""
+
+    if database.del_user_by_name_or_id(user_login, user_id):
+        res['success'] = ""
+    else:
+        res['error'] = "User not delete"
+
+    return json.dumps(res)
 
 
 

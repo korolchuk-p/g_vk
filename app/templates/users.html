@@ -6,6 +6,35 @@
   <link rel="icon" type="image/png" href="/static/images/ico_logined_adm.png">
   <link rel="stylesheet" type="text/css" href="/static/css/global.css">
   <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
+  <script type="text/javascript">
+ $(document).ready(function() {
+  $('.user-deleter').click( function () {
+     var user_id = $(this).attr('id');
+     var delete_form = $.post("/admin_tools/del_user"
+      ,{
+        id: user_id
+      }
+      , function(data) {
+        if ("success" in data){
+            location.reload(true);// <!-- relocate to home  -->
+        }
+        else {
+            var mes = "Other error";
+            if ("error" in data)  mes = data["error"];
+            alert(mes);
+        }
+      }
+      , "json"
+    );
+
+    delete_form.fail(
+        function() {
+            alert("Request error");
+        }
+    );
+  });
+});
+  </script>
 </head>
 <body>
   <header></header>
@@ -16,7 +45,7 @@
       </li>
       {% for user in users %}
       <li>
-        {  Id: {{ user.id }}, Name: {{ user.login }}, Status: {{ user.status }}  }
+        {  Id: {{ user.id }}, Name: {{ user.login }}, Status: {{ user.status }}  }, <a class="user-deleter" id="{{ user.id }}" href="#">DELETE</a>
       </li>
       {% endfor %}
       <li>

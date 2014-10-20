@@ -134,3 +134,17 @@ def  set_last_token_by_user(login=None, token=None):
     db.close()
 
     return  True
+
+def  del_user_by_name_or_id(user_name=None, user_id=None):
+    if not user_name and not user_id: return False
+
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("DELETE FROM `users` WHERE `name`='{0}' OR `id`='{1}'".format(user_name, user_id))
+
+    db.commit()
+    cur.close()
+    db.close()
+
+    return  True

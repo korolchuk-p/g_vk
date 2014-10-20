@@ -31,10 +31,6 @@ def logout():
 @decorators.token_check()
 def users_test():
     user_s = database.all_users()
-
-    for user in user_s:
-        print str(user)
-
     return render_template('users.html', users=user_s)
 
 
