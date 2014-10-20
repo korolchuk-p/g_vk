@@ -43,7 +43,7 @@ def add_new_user(login=None, passwd=None, email=""):
     db = db_con()
     cur = db.cursor()
     logs.add_to_log("try to create new user = {0}, email = {1}".format(str(login), str(email)))
-    cur.execute("INSERT INTO `users` (`name`, `passwd`, `email`) VALUES ('{0}', PASSWORD('{1}'), '{2}')".format(login, passwd, email))
+    cur.execute("INSERT INTO `users` (`name`, `passwd`, `email`, `access_status`) VALUES ('{0}', PASSWORD('{1}'), '{2}', 'user')".format(login, passwd, email))
     db.commit()
     res = True
     cur.close()
@@ -103,3 +103,34 @@ def get_user_status(login):
 #         cur.execute("SELECT * FROM (SELECT * FROM `messages` ORDER BY id DESC LIMIT {0}) AS `table` ORDER BY id ASC".format(str(lasts)))
 
 
+def  get_last_token_by_user(login=None):
+    if not login: return False
+
+    res = False
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("SELECT (`last_token`) FROM `users` WHERE `name`='{0}'".format(login))
+    a = cur.fetchall()
+    if a :
+        res = a[0][0]
+
+    cur.close()
+    db.close()
+
+    return  res
+
+
+def  set_last_token_by_user(login=None, token=None):
+    if not login or not token: return False
+
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("UPDATE `users` SET `last_token`='{0}' WHERE `name`='{1}'".format(token, login))
+
+    db.commit()
+    cur.close()
+    db.close()
+
+    return  True

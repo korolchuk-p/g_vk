@@ -3,6 +3,7 @@ import json
 from flask import Flask, render_template, request, session, redirect
 from app.oth_funcs import decorators
 import app.db_funcs.main as database
+from app.oth_funcs import tokens
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -25,6 +26,9 @@ def login():
         res['error'] = "Wrong login or password"
     else:
         session['login'] = login
+        new_token = tokens.get_token()
+        if (database.set_last_token_by_user(login, new_token)):
+            session['token'] =  new_token
         res['success'] = ""
 
     return json.dumps(res)

@@ -37,3 +37,24 @@ def access(groups=[]):
     return decorator
 
 
+def token_check():
+    def decorator(f):
+        @wraps(f)
+        def func(*args, **kwargs):
+
+            login = session.get('login', None)
+            token = session.get('token', None)
+
+            if not (not token or not login):
+                if database.get_last_token_by_user(login) == token:
+                    return f(*args, **kwargs)
+
+            session.pop('login', None)
+            session.pop('token', None)
+            return redirect('/')
+
+        return func
+
+    return decorator
+
+
