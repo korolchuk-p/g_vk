@@ -18,13 +18,15 @@ mysql_user:root
 mysql_database:g_vk
 mysql_server:localhost
 """
+path_to_file = os.path.join(os.path.dirname(__file__), "paths.conf")
 
-if (not os.path.exists("paths.conf")):
-    c_file = open("paths.conf", "wt")
+
+if (not os.path.exists(path_to_file)):
+    c_file = open(path_to_file, "wt")
     c_file.writelines(default_config)
     c_file.close()
 
-c_file = open("paths.conf", "rt")
+c_file = open(path_to_file, "rt")
 g_vars = config_parser(c_file)
 c_file.close()
 
