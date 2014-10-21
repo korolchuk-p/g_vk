@@ -2,6 +2,7 @@ import MySQLdb
 from app.settings import g_vars
 from app.oth_funcs.logs import add_to_log
 
+# TOOLS BEGIN
 def db_con():
     return MySQLdb.connect( host=g_vars['mysql_server'],
                             user=g_vars['mysql_user'],
@@ -9,6 +10,21 @@ def db_con():
                             db=g_vars['mysql_database'] )
 
 
+def to_utf8(obj):
+    return obj.encode('utf-8')
+
+# TOOLS END
+
+
+
+
+
+
+
+
+
+
+# USERS BEGIN
 def all_users():
     res = []
     db = db_con()
@@ -29,11 +45,6 @@ def all_users():
     return  res
 
 
-def to_utf8(obj):
-    return obj.encode('utf-8')
-
-
-
 def add_new_user(login=None, passwd=None, email=""):
     if not login or not passwd: return False
 
@@ -49,6 +60,7 @@ def add_new_user(login=None, passwd=None, email=""):
     cur.close()
     db.close()
     return res
+
 
 def  user_exist(login=None):
     if not login: return False
@@ -74,7 +86,6 @@ def try_login(login=None, passwd=None):
     db = db_con()
     cur = db.cursor()
 
-
     cur.execute("SELECT (`id`) FROM `users` WHERE `name`='{0}' AND `passwd`=PASSWORD('{1}')".format(login, passwd))
 
     if cur.fetchall(): res = True
@@ -84,6 +95,7 @@ def try_login(login=None, passwd=None):
 
     add_to_log("try to login user = {0}, {1}".format(str(login), "succuss" if res else "fail"))
     return  res
+
 
 def get_user_status(login):
     if not login: return False
@@ -98,9 +110,6 @@ def get_user_status(login):
     db.close()
 
     return  res
-
-
-#         cur.execute("SELECT * FROM (SELECT * FROM `messages` ORDER BY id DESC LIMIT {0}) AS `table` ORDER BY id ASC".format(str(lasts)))
 
 
 def  get_last_token_by_user(login=None):
@@ -135,6 +144,7 @@ def  set_last_token_by_user(login=None, token=None):
 
     return  True
 
+
 def  del_user_by_name_or_id(user_name=None, user_id=None):
     if not user_name and not user_id: return False
 
@@ -150,4 +160,108 @@ def  del_user_by_name_or_id(user_name=None, user_id=None):
     return  True
 
 
+def  get_user_id(user_name=None):
+    if not user_name: return False
 
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("SELECT `id` FROM `users` WHERE `name`='{0}'".format(user_name))
+
+    resp = cur.fetchall()
+    if not resp: return False
+
+    resp = resp[0][0]
+
+    cur.close()
+    db.close()
+
+    return  resp
+
+
+# USERS END
+
+
+
+
+
+
+
+
+
+
+
+
+# FILES BEGIN
+
+def set_file(f=None, name=None):
+    if not f or not name: return False
+
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("INSERT INTO `files` (`filename`, `data`) VALUES  ('{0}', '{1}')".format(name, f))
+    cur.execute("SELECT LAST_INSERT_ID()")
+    file_id = cur.fetchall()[0][0]
+    db.commit()
+    cur.close()
+    db.close()
+
+    return file_id
+
+
+def get_file(f_id):
+    if not f_id: return False
+
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("SELECT `filename`, `data` FROM `files` WHERE `id` = '{0}'".format(f_id))
+    resp = cur.fetchall()
+    if not resp: return False
+    file_data = resp[0][1]
+    file_name = resp[0][0]
+
+    cur.close()
+    db.close()
+
+    return (file_name, file_data)
+
+
+def set_user_file_relation(user_id, file_id, file_type="data", category=""):
+    if not user_id or not file_id: return False
+
+    db = db_con()
+    cur = db.cursor()
+
+    cur.execute("INSERT INTO `rel_user_file` (`user_id`, `file_id`, `type`, `category`) VALUES ({0}, {1}, '{2}', '{3}')".format(user_id, file_id, file_type, category))
+
+    db.commit()
+    cur.close()
+    db.close()
+
+    return True
+
+def get_list_files_by_login(user_name=None):
+    if not user_name:
+        return False
+
+    db = db_con()
+    cur = db.cursor()
+
+    user_id = get_user_id(user_name)
+    if not user_id: return False
+
+    cur.execute("SELECT `file_id`, `type`, `category` FROM `rel_user_file` WHERE `user_id` = '{0}'".format(user_id))
+
+    resp = cur.fetchall()
+
+    if not resp: return False
+    res = [{'id': i[0], 'type':i[1], 'category':i[2]} for i in resp ]
+
+    cur.close()
+    db.close()
+
+    return res
+
+# FILES END

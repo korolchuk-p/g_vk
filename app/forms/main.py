@@ -1,9 +1,13 @@
 from app import app
 import json
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, send_file
+from werkzeug import  secure_filename
 from app.oth_funcs import decorators
 import app.db_funcs.main as database
 from app.oth_funcs import tokens
+from cStringIO import StringIO
+from datetime import timedelta
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -110,6 +114,116 @@ def del_user():
         res['error'] = "User not delete"
 
     return json.dumps(res)
+
+@decorators.logined()
+@decorators.token_check()
+@app.route('/upload_content', methods=['POST'])
+def upload_image():
+    res = {}
+
+    content_type = request.form.get('content_type', None)
+
+    g_file = request.files.get('send_file', None)
+    second_file_name = request.form.get('file_name', None)
+    second_file_name = second_file_name.encode('utf-8') if second_file_name else None
+
+    allowed_image_ext = ['jpg',
+                   'jpeg',
+                   'png',
+                   'ico',
+                   'bmp',
+                   'gif',
+                   'icon']
+    allowed_video_ext = ['avi',
+                   'wmv',
+                   'mp4',
+                   'flv',
+                   '3gp']
+
+    allowed_text_ext = ['txt',
+                   'doc',
+                   'xls',
+                   'pdf']
+
+
+    content_type = str(content_type).lower()
+
+    if content_type == 'image':
+        allowed_ext = allowed_image_ext
+    else:
+        if content_type == 'video':
+            allowed_ext = allowed_video_ext
+        else:
+            if content_type == 'text':
+                allowed_ext = allowed_text_ext
+            else:
+                content_type = 'other'
+
+    if not g_file:
+        res = {'error': "No file"}
+        return json.dumps(res)
+
+    file_ext = g_file.filename.rsplit('.', 1)
+
+    if len(file_ext) > 1:
+        file_name = file_ext[0]
+        file_ext = file_ext[1]
+    else:
+        file_name = g_file.filename
+        file_ext = ""
+
+    if content_type != 'other' and not (file_ext in allowed_ext):
+        res = {'error': "Not available file extension"}
+        return json.dumps(res)
+
+    g_filename = secure_filename(g_file.filename)
+
+    f_id = database.set_file(g_file.read().encode('base64'), g_filename)
+
+    if not f_id:
+        res = {'error': "Database error"}
+        return json.dumps(res)
+
+    user_id = database.get_user_id(session.get('login', None))
+
+    if database.set_user_file_relation(user_id, f_id, content_type, "test"):
+        res = {'success': "<a href='/user/file?id={0}'>go</a>".format(str(f_id))}
+        return json.dumps(res)
+
+
+    res = {'error': "Other error"}
+    return json.dumps(res)
+
+
+@app.route('/user/file', methods=['GET'])
+@decorators.logined()
+@decorators.token_check()
+def get_user_file():
+    file_id = request.args.get('id', None)
+    download = "attachment" if request.args.get('dl', None) else "inline"
+
+    if not file_id:
+        abort(404)
+
+    resp = database.get_file(file_id)
+
+    if not resp:
+        abort(404)
+
+    file_name, file_date = resp
+    maked_file = file_date.decode('base64')
+
+    as_open_file = StringIO(maked_file)
+
+    res = send_file(as_open_file, mimetype='image', cache_timeout=timedelta(days=1000).total_seconds())
+    res.headers['Content-Disposition'] = download + "; filename ='" + file_name + "'"
+    return  res
+
+
+
+
+
+
 
 
 

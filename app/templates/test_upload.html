@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>G_VK - TEST - Upload</title>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/static/images/ico_logined_adm.png">
+  <link rel="stylesheet" type="text/css" href="/static/css/global.css">
+  <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
+  <script type="text/javascript">
+     $(document).ready(function() {
+
+
+      $('form [name="send_form"]').submit( function () {
+         var prog = $('div [name="prog"]');
+         var delete_form = $.ajax("/admin_tools/del_user"
+          ,{
+            id: user_id
+        }
+        , function(data) {
+            if ("success" in data){
+            location.reload(true);// <!-- relocate to home  -->
+        }
+        else {
+            var mes = "Other error";
+            if ("error" in data)  mes = data["error"];
+            alert(mes);
+        }
+    }
+    , "json"
+    );
+
+         delete_form.fail(
+            function() {
+                alert("Request error");
+            }
+            );
+     });
+  });
+ </script>
+</head>
+<body>
+  <header></header>
+  <div class="main-contnent">
+    <form action="/upload_content" method="post" enctype="multipart/form-data" name="send_form">
+      Please choose a file:
+      <input type="file" name="send_file">
+      <div name="prog"></div><br>
+      <select name="content_type" >
+          <option selected value="image" >Image</option>
+          <option value="video" >Video</option>
+          <option value="text" >Text</option>
+          <option value="other" >Other</option>
+      </select>
+      <br>
+      <input type="submit" value="Upload File">
+  </form>
+  <ul>
+      {% for i in user_files %}
+      <li>
+        id: {{ i.id }}, type: {{ i.type }}, category: {{ i.category }}
+        <br>
+        <a href="/user/file?id={{ i.id }}">{% if i.type == "image" %}<img src="/user/file?id={{ i.id }}"  width="100" height="100">{% else %}file{% endif %}</a>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+<footer></footer>
+</body>
+</html>
