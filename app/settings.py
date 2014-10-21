@@ -20,7 +20,6 @@ mysql_server:localhost
 """
 path_to_file = os.path.join(os.path.dirname(__file__), "paths.conf")
 
-
 if (not os.path.exists(path_to_file)):
     c_file = open(path_to_file, "wt")
     c_file.writelines(default_config)

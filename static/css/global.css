@@ -220,6 +220,13 @@ a.exit {
   margin: -17px 2px 2px 0;
 }
 
+.success-m {
+  color: #5fcf5f;
+  font-size: 15px;
+  text-align: right;
+  margin: -17px 2px 2px 0;
+}
+
 /* line 159, ../scss/global.scss */
 .error-message + input[type="text"],
 .error-message + input[type="password"] {
@@ -244,4 +251,30 @@ a.exit {
 .error-message + input[type="text"]:-ms-input-placeholder,
 .error-message + input[type="password"]:-ms-input-placeholder {
   color: #ff7f7f;
+}
+
+/* line 159, ../scss/global.scss */
+.success-m + input[type="text"],
+.success-m + input[type="password"] {
+  border: 2px solid #5fcf5f;
+}
+/* line 57, ../scss/global.scss */
+.success-m + input[type="text"]::-webkit-input-placeholder,
+.success-m + input[type="password"]::-webkit-input-placeholder {
+  color: #5fcf5f;
+}
+/* line 58, ../scss/global.scss */
+.success-m + input[type="text"]:-moz-placeholder,
+.success-m + input[type="password"]:-moz-placeholder {
+  color: #5fcf5f;
+}
+/* line 59, ../scss/global.scss */
+.success-m + input[type="text"]::-moz-placeholder,
+.success-m + input[type="password"]::-moz-placeholder {
+  color: #5fcf5f;
+}
+/* line 60, ../scss/global.scss */
+.success-m + input[type="text"]:-ms-input-placeholder,
+.success-m + input[type="password"]:-ms-input-placeholder {
+  color: #5fcf5f;
 }

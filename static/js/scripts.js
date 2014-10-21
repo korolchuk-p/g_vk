@@ -4,6 +4,7 @@ $(document).keyup(function(e) {
   }
 });
 $(document).ready(function() {
+    var last_ajax;
 
   $('a.registration').click(function() {
     $('.registration-form-wrapper').fadeIn();
@@ -117,40 +118,49 @@ $(document).ready(function() {
   $('.registration-form-wrapper input[name="user"]').keyup( function() {
     var elemName = $(this);
     var name = $(elemName).val();
+    if(last_ajax) last_ajax.abort();
+
+    $('.error-message').remove();
+    $('.success-m').remove();
 
     if (name.length < 2) {
-      $('.error-message').remove();
       $(elemName).before('<div class="error-message">field is required</div>');
       return;
     }
     if (name.length > 32) {
-      $('.error-message').remove();
       $(elemName).before('<div class="error-message">name is too long</div>');
       return;
     }
 
-    var check_login_form = $.post("/login_check"
+
+
+    var check_login_form = last_ajax = $.post("/login_check"
       ,{
         user: name
       }
-      , function(data) {
+      , function( ) {}
+      , "json"
+    );
+
+    // check_login_form.done(function(){
+    //         $('.success-m').remove();
+    // });
+
+    check_login_form.success(function(data) {
         if ("success" in data){
-            $('.error-message').remove()
+            $(elemName).before('<div class="success-m">Name is available</div>');
             //console.log(data);
         }
         else {
             var mes = "Error in name";
             if ("error" in data)  mes = data["error"];
-            $('.error-message').remove();
             $(elemName).before('<div class="error-message">' + mes + '</div>');
         }
       }
-      , "json"
     );
 
     check_login_form.fail(
         function() {
-            $('.error-message').remove();
             $(elemName).before('<div class="error-message">Request error</div>');
         }
     );
