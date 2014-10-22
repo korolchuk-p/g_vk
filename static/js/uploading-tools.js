@@ -22,7 +22,14 @@
                 mxhr.upload.addEventListener('progress', function(e){
                     if(e.lengthComputable)
                     {
-                        $('div[name="prog"]').html((e.loaded /  e.total)*100 + "%");
+                        if(e.loaded<e.total)
+                        {
+                            $('div[name="prog"]').html((e.loaded /  e.total)*100 + "%");
+                        }
+                        else
+                        {
+                            $('div[name="prog"]').html("Waiting for server....");
+                        }
                         console.log((e.loaded /  e.total)*100 + "%" );
                     }
 
@@ -32,14 +39,13 @@
         },
         success: function(data) {
             if ("success" in data){
-                    $('div[name="prog"]').html("100%");
+                $('div[name="prog"]').html('Done!<br>Link:<a href="' + data['success'] + '">New file</a>');
                     //location.reload(true);// <!-- relocate to home  -->
-                    console.log("access to reloaded; new link: " + data['success']);
                 }
                 else {
                     var mes = "Other error";
                     if ("error" in data)  mes = data["error"];
-                    alert(mes);
+                    $('div[name="prog"]').html("Error: " + mes);
                 }
             },
 
@@ -49,14 +55,14 @@
             dataType: 'json'
         });
 
-       s_form.fail(
-        function() {
-            alert("Request error");
-        });
-        s_form.complete(
-        function() {
-            $('div[name="prog"]').html("100%");
-        });
-       return false;
-   });
+ s_form.fail(
+    function() {
+        $('div[name="prog"]').html("Request error");
+    });
+ s_form.complete(
+    function() {
+
+    });
+ return false;
+});
 });

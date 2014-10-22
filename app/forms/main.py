@@ -187,7 +187,7 @@ def upload_image():
     user_id = database.get_user_id(session.get('login', None))
 
     if database.set_user_file_relation(user_id, f_id, content_type, "test"):
-        res = {'success': "<a href='/user/file?id={0}'>go</a>".format(str(f_id))}
+        res = {'success': "/user/file?id={0}".format(str(f_id))}
         return json.dumps(res)
 
 
