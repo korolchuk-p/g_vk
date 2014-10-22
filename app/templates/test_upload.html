@@ -6,44 +6,21 @@
   <link rel="icon" type="image/png" href="/static/images/ico_logined_adm.png">
   <link rel="stylesheet" type="text/css" href="/static/css/global.css">
   <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
-  <script type="text/javascript">
-     $(document).ready(function() {
+  <script type="text/javascript" src="/static/js/uploading-tools.js"></script>
+  <style type="text/css">
+div[name="prog"]{
+    background-color: #ff0000;
 
-
-      $('form [name="send_form"]').submit( function () {
-         var prog = $('div [name="prog"]');
-         var delete_form = $.ajax("/admin_tools/del_user"
-          ,{
-            id: user_id
-        }
-        , function(data) {
-            if ("success" in data){
-            location.reload(true);// <!-- relocate to home  -->
-        }
-        else {
-            var mes = "Other error";
-            if ("error" in data)  mes = data["error"];
-            alert(mes);
-        }
-    }
-    , "json"
-    );
-
-         delete_form.fail(
-            function() {
-                alert("Request error");
-            }
-            );
-     });
-  });
- </script>
+}
+  </style>
 </head>
 <body>
   <header></header>
   <div class="main-contnent">
-    <form action="/upload_content" method="post" enctype="multipart/form-data" name="send_form">
+    <form enctype="multipart/form-data" name="send_form"><!-- action="/upload_content" method="post"   -->
       Please choose a file:
-      <input type="file" name="send_file">
+      <input type="file" name="send_file"><br>
+      <input type="text" name="s_file_name">
       <div name="prog"></div><br>
       <select name="content_type" >
           <option selected value="image" >Image</option>

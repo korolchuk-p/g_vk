@@ -171,7 +171,7 @@ def upload_image():
     else:
         file_name = g_file.filename
         file_ext = ""
-
+    file_ext = file_ext.lower()
     if content_type != 'other' and not (file_ext in allowed_ext):
         res = {'error': "Not available file extension"}
         return json.dumps(res)
@@ -196,8 +196,6 @@ def upload_image():
 
 
 @app.route('/user/file', methods=['GET'])
-@decorators.logined()
-@decorators.token_check()
 def get_user_file():
     file_id = request.args.get('id', None)
     download = "attachment" if request.args.get('dl', None) else "inline"
@@ -214,8 +212,13 @@ def get_user_file():
     maked_file = file_date.decode('base64')
 
     as_open_file = StringIO(maked_file)
+    import mimetypes
+    mimetypes.init()
 
-    res = send_file(as_open_file, mimetype='image', cache_timeout=timedelta(days=1000).total_seconds())
+    file_ext = file_name.rsplit('.', 1)[1] if len(file_name.rsplit('.', 1)) > 1 else ""
+    file_ext = file_ext.lower()
+
+    res = send_file(as_open_file, mimetype=mimetypes.types_map.get('.' + file_ext, 'application/binary'), cache_timeout=timedelta(days=1000).total_seconds())
     res.headers['Content-Disposition'] = download + "; filename ='" + file_name + "'"
     return  res
 
