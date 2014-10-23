@@ -42,4 +42,4 @@ apache/h.conf
 apache/log/*
 app/templates/static/
 static/.sass-cache/
-
+content/*

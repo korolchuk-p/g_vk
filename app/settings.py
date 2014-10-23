@@ -34,4 +34,4 @@ g_vars['logs_path'] = os.path.join(g_vars['main_path'], "log/events.log")
 g_vars['static_images_path'] = os.path.join(g_vars['main_path'], "static/images")
 g_vars['static_css_path'] = os.path.join(g_vars['main_path'], "static/css")
 g_vars['static_js_path'] = os.path.join(g_vars['main_path'], "static/js")
-
+g_vars['content_path'] = os.path.join(g_vars['main_path'], "content")

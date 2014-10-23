@@ -82,19 +82,25 @@ def  user_exist(login=None):
 def try_login(login=None, passwd=None):
     if not login or not passwd: return False
 
-    res = False
+    succuss = False
+
+    res = 0
+
     db = db_con()
     cur = db.cursor()
 
     cur.execute("SELECT (`id`) FROM `users` WHERE `name`='{0}' AND `passwd`=PASSWORD('{1}')".format(login, passwd))
 
-    if cur.fetchall(): res = True
+    a = cur.fetchall()
+    if a:
+        res = a[0][0]
+        succuss = True
 
     cur.close()
     db.close()
 
-    add_to_log("try to login user = {0}, {1}".format(str(login), "succuss" if res else "fail"))
-    return  res
+    add_to_log("try to login user = {0}, {1}".format(str(login), "succuss" if succuss else "fail"))
+    return  (succuss, res)
 
 
 def get_user_status(login):
@@ -194,13 +200,17 @@ def  get_user_id(user_name=None):
 
 # FILES BEGIN
 
-def set_file(f=None, name=None):
-    if not f or not name: return False
+def set_file(f=None, path=None,  name=None):
+    if (not f and not path) or not name: return False
 
     db = db_con()
     cur = db.cursor()
 
-    cur.execute("INSERT INTO `files` (`filename`, `data`) VALUES  ('{0}', '{1}')".format(name, f))
+    if path:
+        cur.execute("INSERT INTO `files` (`filename`, `path`) VALUES  ('{0}', '{1}')".format(name, path))
+    else:
+        cur.execute("INSERT INTO `files` (`filename`, `data`) VALUES  ('{0}', '{1}')".format(name, f))
+
     cur.execute("SELECT LAST_INSERT_ID()")
     file_id = cur.fetchall()[0][0]
     db.commit()
@@ -213,19 +223,27 @@ def set_file(f=None, name=None):
 def get_file(f_id):
     if not f_id: return False
 
+    source = "db"
+
     db = db_con()
     cur = db.cursor()
 
-    cur.execute("SELECT `filename`, `data` FROM `files` WHERE `id` = '{0}'".format(f_id))
+    cur.execute("SELECT `filename`, `data`, `path` FROM `files` WHERE `id` = '{0}'".format(f_id))
     resp = cur.fetchall()
     if not resp: return False
-    file_data = resp[0][1]
+
+    if resp[0][2]:
+        source = "local"
+        file_data = resp[0][2]
+    else:
+        file_data = resp[0][1]
+
     file_name = resp[0][0]
 
     cur.close()
     db.close()
 
-    return (file_name, file_data)
+    return (file_name, source, file_data)
 
 
 def set_user_file_relation(user_id, file_id, file_type="data", category=""):

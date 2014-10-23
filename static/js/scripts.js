@@ -15,6 +15,8 @@ $(document).ready(function() {
     $('.popup-background').fadeIn();
   });
   $('a.exit').click(function() {
+    $('.error-message').remove();
+    $('.success-m').remove();
     $(this).parent().hide();
     $('.popup-background').hide();
   });
