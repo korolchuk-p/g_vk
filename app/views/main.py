@@ -29,15 +29,6 @@ def logout():
     session.pop('login', None)
     return redirect('/')
 
-@app.route('/all_users')
-@decorators.access(['admin'])
-@decorators.token_check()
-def users_test():
-    user_s = database.all_users()
-    return render_template('users.html', users=user_s)
-
-
-
 
 @app.route('/upload_testing')
 @decorators.logined()

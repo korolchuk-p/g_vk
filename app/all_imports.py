@@ -8,7 +8,6 @@ app.permanent_session_lifetime = timedelta(days=2000)
 
 app.config['MAX_CONTENT_LENGTH'] = 512 * 1024 *1024
 
-import app.views.main
-import app.forms.main
-import app.views.handlers
-import app.views.static
+import app.views
+import app.forms
+
