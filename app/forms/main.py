@@ -1,10 +1,11 @@
 from app import app
 import json
 import os
-from flask import Flask, render_template, request, session, redirect, send_file
+from flask import Flask, render_template, request, session, redirect, send_file, abort
 from werkzeug import  secure_filename
 from app.oth_funcs import decorators
-import app.db_funcs.main as database
+import app.db_funcs.user as u_database
+import app.db_funcs.file as f_database
 from app.oth_funcs import saving
 from app.oth_funcs import rnd_funcs
 from cStringIO import StringIO, InputType
@@ -29,14 +30,14 @@ def login():
         res['error'] = "Login or password haven't right size"
         return json.dumps(res)
 
-    (success, user_id) = database.try_login(login, passwd)
+    (success, user_id) = u_database.try_login(login, passwd)
     if not success:
         res['error'] = "Wrong login or password"
     else:
         session['login'] = login
         session['id'] = user_id
         new_token = rnd_funcs.get_token()
-        if (database.set_last_token_by_user(login, new_token)):
+        if (u_database.set_last_token_by_user(login, new_token)):
             session['token'] = new_token
         res['success'] = ""
 
@@ -64,7 +65,7 @@ def regitration():
         res['error'] = "Login or password haven't right size"
         return json.dumps(res)
 
-    if not database.add_new_user(login, passwd, email):
+    if not u_database.add_new_user(login, passwd, email):
         res['error'] = "User already exists"
     else:
         res['success'] = ""
@@ -86,7 +87,7 @@ def login_check():
         res['error'] = "Login hasn't right size"
         return json.dumps(res)
 
-    if database.user_exist(login):
+    if u_database.user_exist(login):
         res['error'] = "Login already exists"
     else:
         res['success'] = ""

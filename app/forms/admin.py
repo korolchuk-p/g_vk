@@ -1,10 +1,11 @@
 from app import app
 import json
 import os
-from flask import Flask, render_template, request, session, redirect, send_file
+from flask import Flask, render_template, request, session, redirect, send_file, abort
 from werkzeug import  secure_filename
 from app.oth_funcs import decorators
-import app.db_funcs.main as database
+import app.db_funcs.user as u_database
+import app.db_funcs.file as f_database
 from app.oth_funcs import saving
 from app.oth_funcs import rnd_funcs
 from cStringIO import StringIO, InputType
@@ -33,7 +34,7 @@ def del_user():
     if database.del_user_by_name_or_id(user_login, user_id):
         res['success'] = ""
     else:
-        res['error'] = "User not delete"
+        res['error'] = "User not deleted"
 
     return json.dumps(res)
 

@@ -14,6 +14,9 @@ def get_img(files):
 def get_css(files):
 	return send_from_directory(g_vars['static_css_path'], files)
 
-@app.route('/static/js/<files>')
-def get_js(files):
-    return send_from_directory(g_vars['static_js_path'], files)
+@app.route('/static/js/', defaults={'path': ''})
+@app.route('/static/js/<path:path>')
+def get_js(path):
+    return send_from_directory(g_vars['static_js_path'], path)
+
+

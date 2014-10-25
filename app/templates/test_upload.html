@@ -5,14 +5,22 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/png" href="/static/images/ico_logined_adm.png">
   <link rel="stylesheet" type="text/css" href="/static/css/global.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/audiojs.css">
   <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="/static/js/audiojs/audio.min.js"></script>
+  <script type="text/javascript" src="/static/js/soundmanager2-nodebug-jsmin.js"></script>
   <script type="text/javascript" src="/static/js/uploading-tools.js"></script>
+  <script type="text/javascript">
+      audiojs.events.ready(function() {
+        var as = audiojs.createAll();
+    });
+  </script>
   <style type="text/css">
-div[name="prog"]{
-    background-color: #ff0000;
+    div[name="prog"]{
+        background-color: #ff0000;
 
-}
-  </style>
+    }
+</style>
 </head>
 <body>
   <header></header>
@@ -21,24 +29,48 @@ div[name="prog"]{
       Please choose a file:
       <input type="file" name="send_file"><br>
       <input type="text" name="s_file_name">
-      <div name="prog"></div><br>
       <select name="content_type" >
           <option selected value="image" >Image</option>
           <option value="video" >Video</option>
           <option value="text" >Text</option>
+          <option value="audio" >Audio</option>
           <option value="other" >Other</option>
+      </select>
+      <select name="secure" >
+          <option selected value="all" >All</option>
+          <option value="friends" >Friends</option>
+          <option value="site" >Only from site</option>
+          <option value="user" >Only for me</option>
       </select>
       <br>
       <input type="submit" value="Upload File">
+      <div name="prog"></div><br>
   </form>
   <ul>
       {% for i in user_files %}
       <li>
-        id: {{ i.id }}, type: {{ i.type }}, category: {{ i.category }}
-        <br>
-        <a href="/user/file?id={{ i.id }}">{% if i.type == "image" %}<img src="/user/file?id={{ i.id }}"  width="100" height="100">{% else %}file{% endif %}</a>
-    </li>
-    {% endfor %}
+          {<br>
+          'file_name':{{ i.file_name }},<br>
+          'file_path':{{ i.file_path }},<br>
+          'file_type':{{ i.file_type }},<br>
+          'secure':{{ i.secure }},<br>
+          'file_link':{{ i.file_link }},<br>
+          'file_id':{{ i.file_id }},<br>
+          'file_added':{{ i.file_added }}<br>
+      }
+      <br>
+      <a href="/delete_file/{{ i.file_link }}">delete file</a>
+      <br>
+      {% if i.file_type == "video" %}
+      <video class="audio-js" controls="" muted="" name="media_{{ i.id }}" width="600" height="400"><source src="/file/{{ i.file_link }}" type="video/mp4"></video>
+      {% elif i.file_type == "audio" %}
+      <audio controls src="/file/{{ i.file_link }}" preload="none" />
+      {% else %}
+      <a href="/file/{{ i.file_link }}">{% if i.file_type == "image" %}<img src="/file/{{ i.file_link }}"  width="100" height="100">{% else %}file{% endif %}</a>
+      {% endif %}
+      <br>
+  </li>
+  {% endfor %}
 </ul>
 </div>
 <footer></footer>

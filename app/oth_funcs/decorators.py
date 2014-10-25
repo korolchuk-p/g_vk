@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import session, redirect, abort
-import app.db_funcs.main as database
+import app.db_funcs.user as u_database
 
 def logined():
     def decorator(f):
@@ -23,9 +23,9 @@ def access(groups=[]):
         def func(*args, **kwargs):
 
             login = session.get('login', "")
-            if not database.user_exist(login): abort(403)
+            if not u_database.user_exist(login): abort(403)
 
-            user_status = database.get_user_status(login)
+            user_status = u_database.get_user_status(login)
 
             if user_status in groups:
                 return f(*args, **kwargs)
@@ -46,7 +46,7 @@ def token_check():
             token = session.get('token', None)
 
             if not (not token or not login):
-                if database.get_last_token_by_user(login) == token:
+                if u_database.get_last_token_by_user(login) == token:
                     return f(*args, **kwargs)
 
             session.pop('login', None)

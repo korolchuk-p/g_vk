@@ -7,10 +7,13 @@
        var form_data = new FormData();
        var sfile = $('input[type="file"]')[0].files[0];
        var ftype = $('select[name="content_type"] :selected').val();
+       var fsecure = $('select[name="secure"] :selected').val();
        var sfname = $('input[name="s_file_name"]').val();
+       console.log(fsecure);
        form_data.append('send_file', sfile);
        form_data.append('content_type', ftype);
        form_data.append('file_name', sfname);
+       form_data.append('secure', fsecure);
        var s_form = $.ajax({
         url: "/upload_content",
         type: "POST",

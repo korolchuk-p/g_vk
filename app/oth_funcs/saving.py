@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import session, redirect, abort
-import app.db_funcs.main as database
+import app.db_funcs.file as f_database
 from app.oth_funcs import rnd_funcs
 from app.settings import g_vars
 import os

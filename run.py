@@ -9,10 +9,7 @@ import app.all_imports
 
 import app.db_funcs.main
 
-##
 
-
-from app.db_funcs import main as dbs
 
 if __name__ == "__main__":
     pass
