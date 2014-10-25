@@ -17,7 +17,7 @@ def logined():
     return decorator
 
 
-def access(groups=[]):
+def access(groups=[], users=[]):
     def decorator(f):
         @wraps(f)
         def func(*args, **kwargs):
@@ -27,7 +27,7 @@ def access(groups=[]):
 
             user_status = u_database.get_user_status(login)
 
-            if user_status in groups:
+            if (user_status in groups) or (login in users):
                 return f(*args, **kwargs)
             else:
                 abort(403)

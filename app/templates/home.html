@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>G_VK - Home page</title>
-  <meta charset="UTF-8">
+{% extends "base.html" %}
+{% block title %}
+Home G_VK
+{% endblock %}
+
+{% block header %}
+{{ super() }}
   <link rel="icon" type="image/png" href="/static/images/ico_logined.png">
-  <link rel="stylesheet" type="text/css" href="/static/css/global.css">
-  <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
-  <script type="text/javascript" src="/static/js/scripts.js"></script>
-</head>
-<body>
-<header>
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
 <div class="main-contnent"></div>
 <h1>
      home login:{{ login }}
@@ -22,7 +24,9 @@
 <h1>
     <a href="/logout">Logout</a>
 </h1>
-<footer></footer>
-</body>
-</html>
+{% endblock %}
 
+{% block footer %}
+<footer></footer>
+<div class="popup-background"></div>
+{% endblock %}

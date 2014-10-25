@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% block header %}
+  <title>{% block title %}base{% endblock %}</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/static/css/global.css">
+  <script type="text/javascript" src="/static/js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="/static/js/scripts.js"></script>
+  {% endblock %}
+</head>
+<body>
+<div class="menu">{% block menu %}{% endblock %}</div>
+<div class="main-content">{% block content %}{% endblock %}</div>
+<div class="footer">{% block footer %}{% endblock %}</div>
+</body>
+</html>
+
