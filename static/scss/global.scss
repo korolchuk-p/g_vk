@@ -1,3 +1,10 @@
+@import "compass/css3";
+@import "compass/utilities";
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+$grey: #8b8b8b;
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,10 +27,20 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 :focus {
   outline: 0;
 }
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
 body {
   line-height: 1;
   color: black;
   background: white;
+  width: 100%;
+  min-width: 320px;
 }
 
 /* tables still need 'cellspacing="0"' in the markup */
@@ -155,11 +172,69 @@ a.exit {
   font-size: 15px;
   text-align: right;
   margin: -17px 2px 2px 0;
+  & + input[type="text"],
+  & + input[type="password"] {
+    border: 2px solid #ff7f7f;
+    @include placeholder {
+      color: #ff7f7f;
+    }
+  }
 }
-.error-message + input[type="text"],
-.error-message + input[type="password"] {
-  border: 2px solid #ff7f7f;
-  @include placeholder {
-    color: #ff7f7f;
+header {
+  .top-wrapper {
+    width: 100%;
+    background-color: #252323;
+  }
+  .top-part {
+    width: 963px;
+    max-width: 90%;
+    margin: auto;
+    height: 61px;
+    .logo {
+      padding-top: 16px;
+      font-size: 24px;
+      font-family: Pacifico, Arial, sans-serif;
+      color: #ffffff;
+      float: left;
+      span {
+        color: #00bac6;
+      }
+    }
+    .social-links {
+      padding-top: 19px;
+      float: right;
+      ul {
+        list-style: none;
+      }
+      li {
+        margin-left: 21px;
+        display: block;
+        width: 26px;
+        height: 26px;
+        float: left;
+        background: url("../images/social-links.png") no-repeat 0 0;
+        &.facebook {
+          margin-left: 15px;
+          background-position: -41px 0;
+        }
+        &.twitter {
+          background-position: -87px 0;
+        }
+        &.linkedin {
+          background-position: -135px 0;
+        }
+      }
+    }
+  }
+  .navigation {
+    li {
+      a {
+        font-family: 'Open Sans', Arial, sans-serif;
+        color: $grey;
+        font-size: 14;
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
   }
 }

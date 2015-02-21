@@ -13,25 +13,50 @@ Index G_VK
 
 {% block content %}
 <header>
-  <div class="registration-form-wrapper form-wrapper">
-    <form method="post" name="registration-form" action="/regist">
-      <input type="text" name="user" placeholder="Enter your name" required>
-      <input type="password" name="pass" placeholder="Enter your password" required>
-      <input type="password" name="re_pass" placeholder="Repeat your password"required>
-      <input type="submit" name="register" value="Register">
-    </form>
-  <a class="exit" href="#">x</a>
+  <div class="top-wrapper">
+    <div class="top-part">
+      <div class="logo">G <span>vk</span></div>
+      <div class="social-links">
+        <ul>
+          <li class="rss"></li>
+          <li class="facebook"></li>
+          <li class="twitter"></li>
+          <li class="linkedin"></li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <a class="registration" href="#">Registration</a>
-  <div class="login-form-wrapper form-wrapper">
-    <form method="post" name="login-form"  ><!-- action="/login" -->
-      <input type="text" name="user" placeholder="Enter your name" required>
-      <input type="password" name="pass" placeholder="Enter your password" required>
-      <input type="submit" name="login" value="Login">
-    </form>
-  <a class="exit" href="#">x</a>
+  <div class="navigation">
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li class="reg-container">
+        <a class="registration" href="#">Registration</a>
+        <div class="registration-form-wrapper form-wrapper">
+          <form method="post" name="registration-form" action="/regist">
+            <input type="text" name="user" placeholder="Enter your name" required>
+            <input type="password" name="pass" placeholder="Enter your password" required>
+            <input type="password" name="re_pass" placeholder="Repeat your password"required>
+            <input type="submit" name="register" value="Register">
+          </form>
+          <a class="exit" href="#">x</a>
+        </div>
+      </li>
+      <li class="login-container">
+        <a class="login" href="#">Login</a>
+        <div class="login-form-wrapper form-wrapper">
+          <form method="post" name="login-form"  >
+            <input type="text" name="user" placeholder="Enter your name" required>
+            <input type="password" name="pass" placeholder="Enter your password" required>
+            <input type="submit" name="login" value="Login">
+          </form>
+        <a class="exit" href="#">x</a>
+        </div>
+      </li>
+      <li><a href="/about">About Us</a></li>
+    </ul>
+
+
   </div>
-  <a class="login" href="#">Login</a>
 </header>
 <div class="main-contnent"></div>
 {% endblock %}
