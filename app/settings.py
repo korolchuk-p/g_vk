@@ -38,16 +38,18 @@ c_file.close()
 def parse_list(s):
     return [ i for i in s.replace(' ', '').replace("'", '').replace('[', '').replace(']', '').split(',')]
 
-g_vars['allowed_ext'] = {}
-g_vars['allowed_ext']['image'] = parse_list(g_vars['image_files'])
-g_vars['allowed_ext']['video'] = parse_list(g_vars['video_files'])
-g_vars['allowed_ext']['audio'] = parse_list(g_vars['audio_files'])
-g_vars['allowed_ext']['text'] = parse_list(g_vars['text_files'])
+if not(__name__ == "__main__"):
+
+    g_vars['allowed_ext'] = {}
+    g_vars['allowed_ext']['image'] = parse_list(g_vars['image_files'])
+    g_vars['allowed_ext']['video'] = parse_list(g_vars['video_files'])
+    g_vars['allowed_ext']['audio'] = parse_list(g_vars['audio_files'])
+    g_vars['allowed_ext']['text'] = parse_list(g_vars['text_files'])
 
 
-g_vars['templates_path'] = os.path.join(g_vars['main_path'], 'app/templates')
-g_vars['logs_path'] = os.path.join(g_vars['main_path'], "log/events.log")
-g_vars['static_images_path'] = os.path.join(g_vars['main_path'], "static/images")
-g_vars['static_css_path'] = os.path.join(g_vars['main_path'], "static/css")
-g_vars['static_js_path'] = os.path.join(g_vars['main_path'], "static/js")
-g_vars['content_path'] = os.path.join(g_vars['main_path'], "content")
+    g_vars['templates_path'] = os.path.join(g_vars['main_path'], 'app/templates')
+    g_vars['logs_path'] = os.path.join(g_vars['main_path'], "log/events.log")
+    g_vars['static_images_path'] = os.path.join(g_vars['main_path'], "static/images")
+    g_vars['static_css_path'] = os.path.join(g_vars['main_path'], "static/css")
+    g_vars['static_js_path'] = os.path.join(g_vars['main_path'], "static/js")
+    g_vars['content_path'] = os.path.join(g_vars['main_path'], "content")

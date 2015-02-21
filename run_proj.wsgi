@@ -1,7 +1,7 @@
 
 import sys, os, logging
 
-sys.path.append('/home/w123/proj/g_vk')
+sys.path.append('/var/www/g_vk')
 
 logging.basicConfig(stream=sys.stderr)
 
