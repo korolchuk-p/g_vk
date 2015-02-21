@@ -43,3 +43,5 @@ apache/log/*
 app/templates/static/
 static/.sass-cache/
 content/*
+.idea/
+run_proj.wsgi

@@ -1,4 +1,6 @@
-/* line 1, ../scss/global.scss */
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+/* line 8, ../scss/global.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -19,58 +21,68 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 
 /* remember to define focus styles! */
-/* line 20, ../scss/global.scss */
+/* line 27, ../scss/global.scss */
 :focus {
   outline: 0;
 }
 
-/* line 23, ../scss/global.scss */
+/* line 31, ../scss/global.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+/* line 38, ../scss/global.scss */
 body {
   line-height: 1;
   color: black;
   background: white;
+  width: 100%;
+  min-width: 320px;
 }
 
 /* tables still need 'cellspacing="0"' in the markup */
-/* line 30, ../scss/global.scss */
+/* line 47, ../scss/global.scss */
 table {
   border-collapse: separate;
   border-spacing: 0;
 }
 
-/* line 34, ../scss/global.scss */
+/* line 51, ../scss/global.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
 }
 
-/* line 38, ../scss/global.scss */
+/* line 55, ../scss/global.scss */
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: "";
 }
 
-/* line 42, ../scss/global.scss */
+/* line 59, ../scss/global.scss */
 blockquote, q {
   quotes: "" "";
 }
 
-/* line 46, ../scss/global.scss */
+/* line 63, ../scss/global.scss */
 a:focus, object:focus {
   outline: none;
 }
 
-/* line 49, ../scss/global.scss */
+/* line 66, ../scss/global.scss */
 i, em {
   font-style: italic;
 }
 
-/* line 53, ../scss/global.scss */
+/* line 70, ../scss/global.scss */
 b, strong {
   font-weight: bold;
 }
 
-/* line 62, ../scss/global.scss */
+/* line 79, ../scss/global.scss */
 .registration-form-wrapper,
 .login-form-wrapper {
   display: none;
@@ -84,13 +96,13 @@ b, strong {
   z-index: 101;
 }
 
-/* line 74, ../scss/global.scss */
+/* line 91, ../scss/global.scss */
 .registration-form-wrapper input,
 .login-form-wrapper input {
   display: block;
 }
 
-/* line 80, ../scss/global.scss */
+/* line 97, ../scss/global.scss */
 .registration-form-wrapper input[type="text"],
 .registration-form-wrapper input[type="password"],
 .login-form-wrapper input[type="text"],
@@ -104,16 +116,16 @@ b, strong {
   border: 2px solid #0095C6;
 }
 
-/* line 93, ../scss/global.scss */
+/* line 110, ../scss/global.scss */
 .registration-form-wrapper input[type="submit"],
 .login-form-wrapper input[type="submit"] {
   padding-top: 8px;
   padding-bottom: 9px;
   width: 241px;
-  background: linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
-  background: -moz-linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
-  background: -webkit-linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
-  background: -o-linear-gradient(88deg, #58A3E6 41%, #539AD9 59%);
+  background: linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
+  background: -moz-linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
+  background: -webkit-linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
+  background: -o-linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
   border: none;
   border-radius: 4px;
   color: #ffffff;
@@ -122,7 +134,7 @@ b, strong {
   cursor: pointer;
 }
 
-/* line 109, ../scss/global.scss */
+/* line 126, ../scss/global.scss */
 a.exit {
   padding-top: 1px;
   font-size: 18px;
@@ -142,56 +154,56 @@ a.exit {
   font-weight: bold;
 }
 
-/* line 57, ../scss/global.scss */
+/* line 74, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]::-webkit-input-placeholder,
 .registration-form-wrapper input[type="text"]::-webkit-input-placeholder,
 .login-form-wrapper input[type="password"]::-webkit-input-placeholder,
 .login-form-wrapper input[type="text"]::-webkit-input-placeholder {
   color: #539AD9;
 }
-/* line 58, ../scss/global.scss */
+/* line 75, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]:-moz-placeholder,
 .registration-form-wrapper input[type="text"]:-moz-placeholder,
 .login-form-wrapper input[type="password"]:-moz-placeholder,
 .login-form-wrapper input[type="text"]:-moz-placeholder {
   color: #539AD9;
 }
-/* line 59, ../scss/global.scss */
+/* line 76, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]::-moz-placeholder,
 .registration-form-wrapper input[type="text"]::-moz-placeholder,
 .login-form-wrapper input[type="password"]::-moz-placeholder,
 .login-form-wrapper input[type="text"]::-moz-placeholder {
   color: #539AD9;
 }
-/* line 60, ../scss/global.scss */
+/* line 77, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]:-ms-input-placeholder,
 .registration-form-wrapper input[type="text"]:-ms-input-placeholder,
 .login-form-wrapper input[type="password"]:-ms-input-placeholder,
 .login-form-wrapper input[type="text"]:-ms-input-placeholder {
   color: #539AD9;
 }
-/* line 57, ../scss/global.scss */
+/* line 74, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]:focus::-webkit-input-placeholder,
 .registration-form-wrapper input[type="text"]:focus::-webkit-input-placeholder,
 .login-form-wrapper input[type="password"]:focus::-webkit-input-placeholder,
 .login-form-wrapper input[type="text"]:focus::-webkit-input-placeholder {
   color: transparent;
 }
-/* line 58, ../scss/global.scss */
+/* line 75, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]:focus:-moz-placeholder,
 .registration-form-wrapper input[type="text"]:focus:-moz-placeholder,
 .login-form-wrapper input[type="password"]:focus:-moz-placeholder,
 .login-form-wrapper input[type="text"]:focus:-moz-placeholder {
   color: transparent;
 }
-/* line 59, ../scss/global.scss */
+/* line 76, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]:focus::-moz-placeholder,
 .registration-form-wrapper input[type="text"]:focus::-moz-placeholder,
 .login-form-wrapper input[type="password"]:focus::-moz-placeholder,
 .login-form-wrapper input[type="text"]:focus::-moz-placeholder {
   color: transparent;
 }
-/* line 60, ../scss/global.scss */
+/* line 77, ../scss/global.scss */
 .registration-form-wrapper input[type="password"]:focus:-ms-input-placeholder,
 .registration-form-wrapper input[type="text"]:focus:-ms-input-placeholder,
 .login-form-wrapper input[type="password"]:focus:-ms-input-placeholder,
@@ -199,7 +211,7 @@ a.exit {
   color: transparent;
 }
 
-/* line 142, ../scss/global.scss */
+/* line 159, ../scss/global.scss */
 .popup-background {
   position: absolute;
   height: 100%;
@@ -212,69 +224,94 @@ a.exit {
   cursor: pointer;
 }
 
-/* line 153, ../scss/global.scss */
+/* line 170, ../scss/global.scss */
 .error-message {
   color: #ff7f7f;
   font-size: 15px;
   text-align: right;
   margin: -17px 2px 2px 0;
 }
-
-.success-m {
-  color: #5fcf5f;
-  font-size: 15px;
-  text-align: right;
-  margin: -17px 2px 2px 0;
-}
-
-/* line 159, ../scss/global.scss */
-.error-message + input[type="text"],
-.error-message + input[type="password"] {
+/* line 175, ../scss/global.scss */
+.error-message + input[type="text"], .error-message + input[type="password"] {
   border: 2px solid #ff7f7f;
 }
-/* line 57, ../scss/global.scss */
-.error-message + input[type="text"]::-webkit-input-placeholder,
-.error-message + input[type="password"]::-webkit-input-placeholder {
+/* line 74, ../scss/global.scss */
+.error-message + input[type="text"]::-webkit-input-placeholder, .error-message + input[type="password"]::-webkit-input-placeholder {
   color: #ff7f7f;
 }
-/* line 58, ../scss/global.scss */
-.error-message + input[type="text"]:-moz-placeholder,
-.error-message + input[type="password"]:-moz-placeholder {
+/* line 75, ../scss/global.scss */
+.error-message + input[type="text"]:-moz-placeholder, .error-message + input[type="password"]:-moz-placeholder {
   color: #ff7f7f;
 }
-/* line 59, ../scss/global.scss */
-.error-message + input[type="text"]::-moz-placeholder,
-.error-message + input[type="password"]::-moz-placeholder {
+/* line 76, ../scss/global.scss */
+.error-message + input[type="text"]::-moz-placeholder, .error-message + input[type="password"]::-moz-placeholder {
   color: #ff7f7f;
 }
-/* line 60, ../scss/global.scss */
-.error-message + input[type="text"]:-ms-input-placeholder,
-.error-message + input[type="password"]:-ms-input-placeholder {
+/* line 77, ../scss/global.scss */
+.error-message + input[type="text"]:-ms-input-placeholder, .error-message + input[type="password"]:-ms-input-placeholder {
   color: #ff7f7f;
 }
 
-/* line 159, ../scss/global.scss */
-.success-m + input[type="text"],
-.success-m + input[type="password"] {
-  border: 2px solid #5fcf5f;
+/* line 184, ../scss/global.scss */
+header .top-wrapper {
+  width: 100%;
+  background-color: #252323;
 }
-/* line 57, ../scss/global.scss */
-.success-m + input[type="text"]::-webkit-input-placeholder,
-.success-m + input[type="password"]::-webkit-input-placeholder {
-  color: #5fcf5f;
+/* line 188, ../scss/global.scss */
+header .top-part {
+  width: 963px;
+  max-width: 90%;
+  margin: auto;
+  height: 61px;
 }
-/* line 58, ../scss/global.scss */
-.success-m + input[type="text"]:-moz-placeholder,
-.success-m + input[type="password"]:-moz-placeholder {
-  color: #5fcf5f;
+/* line 193, ../scss/global.scss */
+header .top-part .logo {
+  padding-top: 16px;
+  font-size: 24px;
+  font-family: Pacifico, Arial, sans-serif;
+  color: #ffffff;
+  float: left;
 }
-/* line 59, ../scss/global.scss */
-.success-m + input[type="text"]::-moz-placeholder,
-.success-m + input[type="password"]::-moz-placeholder {
-  color: #5fcf5f;
+/* line 199, ../scss/global.scss */
+header .top-part .logo span {
+  color: #00bac6;
 }
-/* line 60, ../scss/global.scss */
-.success-m + input[type="text"]:-ms-input-placeholder,
-.success-m + input[type="password"]:-ms-input-placeholder {
-  color: #5fcf5f;
+/* line 203, ../scss/global.scss */
+header .top-part .social-links {
+  padding-top: 19px;
+  float: right;
+}
+/* line 206, ../scss/global.scss */
+header .top-part .social-links ul {
+  list-style: none;
+}
+/* line 209, ../scss/global.scss */
+header .top-part .social-links li {
+  margin-left: 21px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  float: left;
+  background: url("../images/social-links.png") no-repeat 0 0;
+}
+/* line 216, ../scss/global.scss */
+header .top-part .social-links li.facebook {
+  margin-left: 15px;
+  background-position: -41px 0;
+}
+/* line 220, ../scss/global.scss */
+header .top-part .social-links li.twitter {
+  background-position: -87px 0;
+}
+/* line 223, ../scss/global.scss */
+header .top-part .social-links li.linkedin {
+  background-position: -135px 0;
+}
+/* line 231, ../scss/global.scss */
+header .navigation li a {
+  font-family: 'Open Sans', Arial, sans-serif;
+  color: #8b8b8b;
+  font-size: 14;
+  font-weight: bold;
+  text-decoration: none;
 }
