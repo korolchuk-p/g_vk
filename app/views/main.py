@@ -1,6 +1,6 @@
 from app import app
 import json
-from flask import Flask, render_template, request, session, redirect, send_file, abort
+from flask import Flask, render_template, request, session, redirect, send_file, abort, url_for
 from werkzeug.datastructures import Headers
 from app.oth_funcs import decorators
 import app.db_funcs.file as f_database
@@ -13,7 +13,7 @@ def index():
     if not 'login' in session:
         return render_template('index.html')
 
-    return redirect('/home')
+    return redirect(url_for('home_page'))
 
 
 @app.route('/home')
@@ -29,7 +29,7 @@ def home_page():
 def logout():
     session.pop('login', None)
     session.pop('id', None)
-    return redirect('/')
+    return redirect(url_for('index'))
 
 
 @app.route('/upload_testing')
@@ -55,5 +55,9 @@ def upload_testing():
     return render_template('test_upload.html', user_files=files)
 
 
+@app.route('/about')
+def about():
 
-
+    return render_template('about.html',
+                           login=session['login'].decode('utf-8') 
+                           if 'login' in session else None)
