@@ -3,12 +3,17 @@ g_vk
 
 test social network
 
+Run commands:
 
-run command
-sudo python create_all_folders.py --folders --wsgi --linux --log
+sudo chmod +x install_packages.sh 
 
-make file /etc/apache2/sites-available/site-g_vk.conf and insert: 
-IncludeOptional /var/www/g_vk/apache/h.conf
+sudo ./install_packages.sh 
+
+sudo python create_all_folders.py --folders --wsgi --linux --log --apache 
+
+sudo python app/settings.py 
+
+Configure: app/settings.conf 
 
 In mysql:
 mysql> create database g_vk;
