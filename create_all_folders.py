@@ -5,9 +5,10 @@ cur_path = os.path.dirname(os.path.realpath(__file__))
 
 
 wsgi_file_name="run_proj"
+apache_conf_file = "/etc/apache2/sites-enabled/site-g_vk.conf"
 
-create_conf_win_files= False
-create_conf_lin_files= False
+create_conf_win_files = False
+create_conf_lin_files = False
 
 create_log_files = False
 
@@ -16,12 +17,15 @@ create_all_foldes = False
 create_wsgi_file = False
 create_new = False
 
+add_to_apache = False
+
 
 if '--linux' in sys.argv: create_conf_lin_files = True
 if '--win' in sys.argv: create_conf_win_files = True
 if '--log' in sys.argv: create_log_files = True
 if '--folders' in sys.argv: create_all_foldes = True
 if '--wsgi' in sys.argv: create_wsgi_file = True
+if '--apache' in sys.argv: add_to_apache = True
 if '--new' in sys.argv: create_new = True
 
 if '--help' in sys.argv or '-h' in sys.argv:
@@ -79,17 +83,19 @@ apache_win_conf = """
 """
 
 apache_lin_conf = """
-Listen 80
+Listen 5001
 
 <Directory   {path}/>
     AllowOverride None
     Require all granted
 </Directory>
 
-<VirtualHost *:80>
+<VirtualHost *:5001>
 	ServerName aa.aa.aa
 
 	WSGIScriptAlias / {path}/{wsgi_file}.wsgi
+	WSGIDaemonProcess aa.aa.aa processes=2 threads=25 display-name=%{{GROUP}}
+    WSGIProcessGroup aa.aa.aa
 	WSGIScriptReloading On
 
 	DocumentRoot {path}
@@ -113,8 +119,7 @@ logging.basicConfig(stream=sys.stderr)
 
 
 from app import app as application
-
-#import app.main
+import app.all_imports
 """
 
 #defs
@@ -155,9 +160,7 @@ if create_log_files:
 
 
 if create_conf_win_files or create_conf_lin_files:
-	if create_new:
-		delete_file('apache/h.conf')
-		delete_file('{0}.wsgi'.format(wsgi_file_name))
+	delete_file('apache/h.conf')
 
 	full_conf_path = os.path.join(cur_path, 'apache/h.conf')
 	if not os.path.exists(full_conf_path):
@@ -168,12 +171,21 @@ if create_conf_win_files or create_conf_lin_files:
 
 
 if create_wsgi_file:
-	if create_new:
-		delete_file('{0}.wsgi'.format(wsgi_file_name))
+	delete_file('{0}.wsgi'.format(wsgi_file_name))
 
 	full_wsgi_path = os.path.join(cur_path, '{0}.wsgi'.format(wsgi_file_name))
 	if not os.path.exists(full_wsgi_path):
 		to_write = def_wsgi.format(path=cur_path)
-		f = open(full_wsgi_path, 'a')
+		f = open(full_wsgi_path, 'w')
 		f.writelines(to_write)
+		f.close()
+
+if add_to_apache:
+
+	if os.path.exists(apache_conf_file):
+		os.remove(apache_conf_file)
+
+	if not os.path.exists(apache_conf_file):
+		f = open(apache_conf_file, 'w')
+		f.writelines("IncludeOptional {path}/apache/h.conf".format(path=cur_path))
 		f.close()

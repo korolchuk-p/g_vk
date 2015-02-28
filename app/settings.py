@@ -12,8 +12,8 @@ def config_parser(f):
 
     return res
 
-default_config = """main_path:/home/w123/proj/g_vk
-mysql_passwd:123456
+default_config = """main_path:/var/www/g_vk
+mysql_passwd:1234
 mysql_user:root
 mysql_database:g_vk
 mysql_server:localhost
