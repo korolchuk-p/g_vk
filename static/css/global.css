@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-/* line 8, ../scss/global.scss */
+/* line 1, ../scss/_refresh.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -16,17 +16,17 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   font-weight: inherit;
   font-style: inherit;
   font-size: 100%;
-  font-family: inherit;
+  font-family: 'Open Sans', Arial, sans-serif;
   vertical-align: baseline;
 }
 
 /* remember to define focus styles! */
-/* line 27, ../scss/global.scss */
+/* line 20, ../scss/_refresh.scss */
 :focus {
   outline: 0;
 }
 
-/* line 31, ../scss/global.scss */
+/* line 24, ../scss/_refresh.scss */
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -34,7 +34,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   word-wrap: break-word;
 }
 
-/* line 38, ../scss/global.scss */
+/* line 31, ../scss/_refresh.scss */
 body {
   line-height: 1;
   color: black;
@@ -43,46 +43,233 @@ body {
   min-width: 320px;
 }
 
-/* tables still need 'cellspacing="0"' in the markup */
-/* line 47, ../scss/global.scss */
+/* line 39, ../scss/_refresh.scss */
 table {
   border-collapse: separate;
   border-spacing: 0;
 }
 
-/* line 51, ../scss/global.scss */
+/* line 43, ../scss/_refresh.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
 }
 
-/* line 55, ../scss/global.scss */
+/* line 47, ../scss/_refresh.scss */
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: "";
 }
 
-/* line 59, ../scss/global.scss */
+/* line 51, ../scss/_refresh.scss */
 blockquote, q {
   quotes: "" "";
 }
 
-/* line 63, ../scss/global.scss */
+/* line 55, ../scss/_refresh.scss */
 a:focus, object:focus {
   outline: none;
 }
 
-/* line 66, ../scss/global.scss */
+/* line 58, ../scss/_refresh.scss */
 i, em {
   font-style: italic;
 }
 
-/* line 70, ../scss/global.scss */
+/* line 62, ../scss/_refresh.scss */
 b, strong {
   font-weight: bold;
 }
 
-/* line 79, ../scss/global.scss */
+/* line 2, ../scss/pages/_mainpage.scss */
+header .top-wrapper {
+  width: 100%;
+  background-color: #252323;
+}
+/* line 6, ../scss/pages/_mainpage.scss */
+header .top-part {
+  width: 963px;
+  max-width: 90%;
+  margin: auto;
+  height: 61px;
+}
+/* line 11, ../scss/pages/_mainpage.scss */
+header .top-part .logo {
+  padding-top: 16px;
+  font-size: 24px;
+  font-family: Pacifico, Arial, sans-serif;
+  color: #ffffff;
+  float: left;
+}
+/* line 17, ../scss/pages/_mainpage.scss */
+header .top-part .logo span {
+  color: #00bac6;
+}
+/* line 21, ../scss/pages/_mainpage.scss */
+header .top-part .social-links {
+  padding-top: 19px;
+  float: right;
+}
+/* line 24, ../scss/pages/_mainpage.scss */
+header .top-part .social-links ul {
+  list-style: none;
+}
+/* line 27, ../scss/pages/_mainpage.scss */
+header .top-part .social-links li {
+  margin-left: 21px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  float: left;
+  background: url("../images/social-links.png") no-repeat 0 0;
+}
+/* line 34, ../scss/pages/_mainpage.scss */
+header .top-part .social-links li.facebook {
+  margin-left: 15px;
+  background-position: -41px 0;
+}
+/* line 38, ../scss/pages/_mainpage.scss */
+header .top-part .social-links li.twitter {
+  background-position: -87px 0;
+}
+/* line 41, ../scss/pages/_mainpage.scss */
+header .top-part .social-links li.linkedin {
+  background-position: -135px 0;
+}
+/* line 47, ../scss/pages/_mainpage.scss */
+header .navigation {
+  overflow: hidden;
+}
+/* line 49, ../scss/pages/_mainpage.scss */
+header .navigation ul {
+  list-style: none;
+  width: 980px;
+  margin: auto;
+  overflow: hidden;
+  padding-top: 37px;
+}
+/* line 56, ../scss/pages/_mainpage.scss */
+header .navigation li {
+  float: left;
+}
+/* line 58, ../scss/pages/_mainpage.scss */
+header .navigation li a {
+  color: #8b8b8b;
+  font-size: 14px;
+  font-weight: normal;
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+  padding: 0 14px 29px 11px;
+  height: 45px;
+}
+/* line 69, ../scss/pages/_mainpage.scss */
+header .navigation li:hover a {
+  color: #00bac6;
+  border-bottom: 2px solid;
+}
+
+/* line 78, ../scss/pages/_mainpage.scss */
+.main-page-slideshow {
+  padding-top: 2px;
+}
+/* line 80, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slide {
+  position: relative;
+}
+/* line 82, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slide img {
+  width: 100%;
+}
+/* line 85, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slide .text {
+  position: absolute;
+  top: 36%;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: bold;
+  width: 100%;
+}
+/* line 96, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-dots {
+  bottom: 24px;
+}
+/* line 98, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-dots button {
+  width: 12px;
+  height: 12px;
+  border: 4px solid #ffffff;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}
+/* line 103, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-dots button:before {
+  content: '';
+}
+/* line 108, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-dots .slick-active button {
+  background: #00bac6;
+}
+/* line 113, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-prev,
+.main-page-slideshow .slick-next {
+  height: 52px;
+  width: 27px;
+  background: url("../images/slideshow-arrows.png") no-repeat 0 0;
+  text-indent: -9999px;
+  color: transparent;
+  font-size: 0;
+  opacity: 0.6;
+  -moz-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  -webkit-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+}
+/* line 123, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-prev:hover,
+.main-page-slideshow .slick-next:hover {
+  opacity: 1;
+}
+/* line 126, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-prev:hover, .main-page-slideshow .slick-prev:focus,
+.main-page-slideshow .slick-next:hover,
+.main-page-slideshow .slick-next:focus {
+  background: url("../images/slideshow-arrows.png") no-repeat 0 0;
+}
+/* line 131, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-prev {
+  left: 5%;
+}
+/* line 134, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-next {
+  right: 5%;
+  background-position: -35px 0;
+}
+/* line 137, ../scss/pages/_mainpage.scss */
+.main-page-slideshow .slick-next:hover, .main-page-slideshow .slick-next:focus {
+  background-position: -35px 0;
+}
+
+/* line 143, ../scss/pages/_mainpage.scss */
+.footer {
+  position: absolute;
+  bottom: 0;
+  background: #252323;
+  height: 75px;
+  width: 100%;
+}
+/* line 149, ../scss/pages/_mainpage.scss */
+.footer footer {
+  padding-top: 30px;
+  width: 963px;
+  margin: auto;
+  color: #c1c1c1;
+}
+
+/* line 10, ../scss/global.scss */
 .registration-form-wrapper,
 .login-form-wrapper {
   display: none;
@@ -96,13 +283,13 @@ b, strong {
   z-index: 101;
 }
 
-/* line 91, ../scss/global.scss */
+/* line 22, ../scss/global.scss */
 .registration-form-wrapper input,
 .login-form-wrapper input {
   display: block;
 }
 
-/* line 97, ../scss/global.scss */
+/* line 28, ../scss/global.scss */
 .registration-form-wrapper input[type="text"],
 .registration-form-wrapper input[type="password"],
 .login-form-wrapper input[type="text"],
@@ -116,16 +303,17 @@ b, strong {
   border: 2px solid #0095C6;
 }
 
-/* line 110, ../scss/global.scss */
+/* line 41, ../scss/global.scss */
 .registration-form-wrapper input[type="submit"],
 .login-form-wrapper input[type="submit"] {
   padding-top: 8px;
   padding-bottom: 9px;
   width: 241px;
-  background: linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
-  background: -moz-linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
-  background: -webkit-linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
-  background: -o-linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9Ii0wLjAxNjgzIiB5MT0iMC41MTgwNDgiIHgyPSIxLjAxNjgzIiB5Mj0iMC40ODE5NTIiPjxzdG9wIG9mZnNldD0iNDElIiBzdG9wLWNvbG9yPSIjNThhM2U2Ii8+PHN0b3Agb2Zmc2V0PSI1OSUiIHN0b3AtY29sb3I9IiM1MzlhZDkiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background-size: 100%;
+  background-image: -moz-linear-gradient(2deg, #58a3e6 41%, #539ad9 59%);
+  background-image: -webkit-linear-gradient(2deg, #58a3e6 41%, #539ad9 59%);
+  background-image: linear-gradient(88deg, #58a3e6 41%, #539ad9 59%);
   border: none;
   border-radius: 4px;
   color: #ffffff;
@@ -134,7 +322,7 @@ b, strong {
   cursor: pointer;
 }
 
-/* line 126, ../scss/global.scss */
+/* line 54, ../scss/global.scss */
 a.exit {
   padding-top: 1px;
   font-size: 18px;
@@ -148,62 +336,62 @@ a.exit {
   text-decoration: none;
   color: #ffffff;
   background-color: #0095C6;
-  box-shadow: -1px 2px 3px #333333;
-  -webkit-box-shadow: -1px 2px 3px #333333;
   -moz-box-shadow: -1px 2px 3px #333333;
+  -webkit-box-shadow: -1px 2px 3px #333333;
+  box-shadow: -1px 2px 3px #333333;
   font-weight: bold;
 }
 
-/* line 74, ../scss/global.scss */
+/* line 2, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]::-webkit-input-placeholder,
 .registration-form-wrapper input[type="text"]::-webkit-input-placeholder,
 .login-form-wrapper input[type="password"]::-webkit-input-placeholder,
 .login-form-wrapper input[type="text"]::-webkit-input-placeholder {
   color: #539AD9;
 }
-/* line 75, ../scss/global.scss */
+/* line 3, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]:-moz-placeholder,
 .registration-form-wrapper input[type="text"]:-moz-placeholder,
 .login-form-wrapper input[type="password"]:-moz-placeholder,
 .login-form-wrapper input[type="text"]:-moz-placeholder {
   color: #539AD9;
 }
-/* line 76, ../scss/global.scss */
+/* line 4, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]::-moz-placeholder,
 .registration-form-wrapper input[type="text"]::-moz-placeholder,
 .login-form-wrapper input[type="password"]::-moz-placeholder,
 .login-form-wrapper input[type="text"]::-moz-placeholder {
   color: #539AD9;
 }
-/* line 77, ../scss/global.scss */
+/* line 5, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]:-ms-input-placeholder,
 .registration-form-wrapper input[type="text"]:-ms-input-placeholder,
 .login-form-wrapper input[type="password"]:-ms-input-placeholder,
 .login-form-wrapper input[type="text"]:-ms-input-placeholder {
   color: #539AD9;
 }
-/* line 74, ../scss/global.scss */
+/* line 2, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]:focus::-webkit-input-placeholder,
 .registration-form-wrapper input[type="text"]:focus::-webkit-input-placeholder,
 .login-form-wrapper input[type="password"]:focus::-webkit-input-placeholder,
 .login-form-wrapper input[type="text"]:focus::-webkit-input-placeholder {
   color: transparent;
 }
-/* line 75, ../scss/global.scss */
+/* line 3, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]:focus:-moz-placeholder,
 .registration-form-wrapper input[type="text"]:focus:-moz-placeholder,
 .login-form-wrapper input[type="password"]:focus:-moz-placeholder,
 .login-form-wrapper input[type="text"]:focus:-moz-placeholder {
   color: transparent;
 }
-/* line 76, ../scss/global.scss */
+/* line 4, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]:focus::-moz-placeholder,
 .registration-form-wrapper input[type="text"]:focus::-moz-placeholder,
 .login-form-wrapper input[type="password"]:focus::-moz-placeholder,
 .login-form-wrapper input[type="text"]:focus::-moz-placeholder {
   color: transparent;
 }
-/* line 77, ../scss/global.scss */
+/* line 5, ../scss/_mixins.scss */
 .registration-form-wrapper input[type="password"]:focus:-ms-input-placeholder,
 .registration-form-wrapper input[type="text"]:focus:-ms-input-placeholder,
 .login-form-wrapper input[type="password"]:focus:-ms-input-placeholder,
@@ -211,7 +399,7 @@ a.exit {
   color: transparent;
 }
 
-/* line 159, ../scss/global.scss */
+/* line 85, ../scss/global.scss */
 .popup-background {
   position: absolute;
   height: 100%;
@@ -224,94 +412,30 @@ a.exit {
   cursor: pointer;
 }
 
-/* line 170, ../scss/global.scss */
+/* line 96, ../scss/global.scss */
 .error-message {
   color: #ff7f7f;
   font-size: 15px;
   text-align: right;
   margin: -17px 2px 2px 0;
 }
-/* line 175, ../scss/global.scss */
+/* line 101, ../scss/global.scss */
 .error-message + input[type="text"], .error-message + input[type="password"] {
   border: 2px solid #ff7f7f;
 }
-/* line 74, ../scss/global.scss */
+/* line 2, ../scss/_mixins.scss */
 .error-message + input[type="text"]::-webkit-input-placeholder, .error-message + input[type="password"]::-webkit-input-placeholder {
   color: #ff7f7f;
 }
-/* line 75, ../scss/global.scss */
+/* line 3, ../scss/_mixins.scss */
 .error-message + input[type="text"]:-moz-placeholder, .error-message + input[type="password"]:-moz-placeholder {
   color: #ff7f7f;
 }
-/* line 76, ../scss/global.scss */
+/* line 4, ../scss/_mixins.scss */
 .error-message + input[type="text"]::-moz-placeholder, .error-message + input[type="password"]::-moz-placeholder {
   color: #ff7f7f;
 }
-/* line 77, ../scss/global.scss */
+/* line 5, ../scss/_mixins.scss */
 .error-message + input[type="text"]:-ms-input-placeholder, .error-message + input[type="password"]:-ms-input-placeholder {
   color: #ff7f7f;
-}
-
-/* line 184, ../scss/global.scss */
-header .top-wrapper {
-  width: 100%;
-  background-color: #252323;
-}
-/* line 188, ../scss/global.scss */
-header .top-part {
-  width: 963px;
-  max-width: 90%;
-  margin: auto;
-  height: 61px;
-}
-/* line 193, ../scss/global.scss */
-header .top-part .logo {
-  padding-top: 16px;
-  font-size: 24px;
-  font-family: Pacifico, Arial, sans-serif;
-  color: #ffffff;
-  float: left;
-}
-/* line 199, ../scss/global.scss */
-header .top-part .logo span {
-  color: #00bac6;
-}
-/* line 203, ../scss/global.scss */
-header .top-part .social-links {
-  padding-top: 19px;
-  float: right;
-}
-/* line 206, ../scss/global.scss */
-header .top-part .social-links ul {
-  list-style: none;
-}
-/* line 209, ../scss/global.scss */
-header .top-part .social-links li {
-  margin-left: 21px;
-  display: block;
-  width: 26px;
-  height: 26px;
-  float: left;
-  background: url("../images/social-links.png") no-repeat 0 0;
-}
-/* line 216, ../scss/global.scss */
-header .top-part .social-links li.facebook {
-  margin-left: 15px;
-  background-position: -41px 0;
-}
-/* line 220, ../scss/global.scss */
-header .top-part .social-links li.twitter {
-  background-position: -87px 0;
-}
-/* line 223, ../scss/global.scss */
-header .top-part .social-links li.linkedin {
-  background-position: -135px 0;
-}
-/* line 231, ../scss/global.scss */
-header .navigation li a {
-  font-family: 'Open Sans', Arial, sans-serif;
-  color: #8b8b8b;
-  font-size: 14;
-  font-weight: bold;
-  text-decoration: none;
 }

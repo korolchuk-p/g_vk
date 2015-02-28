@@ -54,15 +54,19 @@ Index G_VK
       </li>
       <li><a href="{{ url_for('about') }}">About Us</a></li>
     </ul>
-
-
   </div>
 </header>
-<div class="main-contnent"></div>
+<div class="main-contnent">
+  {% include "main-page-slideshow.html" %}
+</div>
 {% endblock %}
 
 {% block footer %}
-<footer></footer>
+<footer>
+  <div class="info">
+    2015 All rights reserved
+  </div>
+</footer>
 <div class="popup-background"></div>
 {% endblock %}
 
