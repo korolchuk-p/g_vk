@@ -166,8 +166,18 @@ $(document).ready(function() {
             $(elemName).before('<div class="error-message">Request error</div>');
         }
     );
-
-
   });
 
+  //Slideshow.
+    $('.slides-wrapper').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      fade: true,
+      speed: 900
+    });
+
 });
+
