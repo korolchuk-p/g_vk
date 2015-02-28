@@ -5,21 +5,90 @@ Home G_VK
 
 {% block header %}
 {{ super() }}
-  <link rel="icon" type="image/png" href="/static/images/ico_logined.png">
+  <link rel="icon" type="image/png" href="/static/images/ico_logined.png" >
 {% endblock %}
 
 {% block menu %}
+<div class="menu-link">
+<ul>
+	<li>
+	<a href="#">My pictures</a>
+	</li>
+	<li>
+	<a href="#">My music</a>
+	</li>
+	<li>
+	<a href="#">My videos</a>
+	</li>
+	<li>
+	<a href="#">My Documents</a>
+	</li>
+	<li>
+	<a href="#">Others</a>
+	</li>
+</ul>
+</div>
+<div>
+	
+</div>
 {% endblock %}
 
 {% block content %}
+<style type="text/css">
+	div.user-info{
+		position: relative;
+		left: 100px;
+	}
+
+	div.avatar{
+		position: relative;
+		left: 400px;
+	}
+
+	h1.news-header{
+		font-size: 14px;
+	}
+
+</style>
 <div class="main-contnent"></div>
+<div class="user-info">
 <h1>
-     home login:{{ login }}
+     login:{{ login }}
+</h1>
+<h1>
+     name:{{ login }}
 </h1>
 <br>
 <h1>
+     surname:{{ login }}
+</h1>
+<br>
+<h1>
+     email:{{ login }}
+</h1>
+<br>
+<h1>
+     age:{{ login }}
+</h1>
+<br>
+</div>
+
+<div class="avatar"> 
+	<img src="/static/images/no-avatar.jpg" width="150" height="200">
+</div>
+<h1>
     <a href="/upload_testing">testing upload</a>
 </h1>
+<br>
+<div class="news"> 
+	<div><h1 class="news-header">Last news</h1></div>
+	<div class="news-body">
+	<ul class="news-one">
+		<li>news #1</li>
+		<li>news #2</li>
+	</ul>
+	</div>
+</div>
 <br>
 <h1>
     <a href="/logout">Logout</a>
