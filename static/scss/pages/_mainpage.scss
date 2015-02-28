@@ -1,0 +1,155 @@
+header {
+  .top-wrapper {
+    width: 100%;
+    background-color: #252323;
+  }
+  .top-part {
+    width: 963px;
+    max-width: 90%;
+    margin: auto;
+    height: 61px;
+    .logo {
+      padding-top: 16px;
+      font-size: 24px;
+      font-family: Pacifico, Arial, sans-serif;
+      color: #ffffff;
+      float: left;
+      span {
+        color: $blue;
+      }
+    }
+    .social-links {
+      padding-top: 19px;
+      float: right;
+      ul {
+        list-style: none;
+      }
+      li {
+        margin-left: 21px;
+        display: block;
+        width: 26px;
+        height: 26px;
+        float: left;
+        background: url("../images/social-links.png") no-repeat 0 0;
+        &.facebook {
+          margin-left: 15px;
+          background-position: -41px 0;
+        }
+        &.twitter {
+          background-position: -87px 0;
+        }
+        &.linkedin {
+          background-position: -135px 0;
+        }
+      }
+    }
+  }
+  .navigation {
+    overflow: hidden;
+    ul {
+      list-style: none;
+      width: 980px;
+      margin: auto;
+      overflow: hidden;
+      padding-top: 37px;
+    }
+    li {
+      float: left;
+      a {
+        color: $grey;
+        font-size: 14px;
+        font-weight: normal;
+        text-decoration: none;
+        display: block;
+        text-transform: uppercase;
+        padding: 0 14px 29px 11px;
+        height: 45px;
+      }
+      &:hover {
+        a {
+          color: $blue;
+          border-bottom: 2px solid;
+        }
+      }
+    }
+  }
+}
+
+.main-page-slideshow {
+  padding-top: 2px;
+  .slide {
+    position: relative;
+    img {
+      width: 100%;
+    }
+    .text {
+      position: absolute;
+      top: 36%;
+      text-align: center;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-size: 40px;
+      font-weight: bold;
+      width: 100%;
+    }
+  }
+  .slick-dots {
+    bottom: 24px;
+    button {
+      width: 12px;
+      height: 12px;
+      border: 4px solid #ffffff;
+      @include border-radius(100%);
+      &:before {
+        content: '';
+      }
+    }
+    .slick-active {
+      button {
+        background: $blue;
+      }
+    }
+  }
+  .slick-prev,
+  .slick-next {
+    height: 52px;
+    width: 27px;
+    background: url("../images/slideshow-arrows.png") no-repeat 0 0;
+    text-indent: -9999px;
+    color: transparent;
+    font-size: 0;
+    opacity: 0.6;
+    @include transition(opacity 0.6s);
+    &:hover {
+      opacity: 1;
+    }
+    &:hover,
+    &:focus {
+      background: url("../images/slideshow-arrows.png") no-repeat 0 0;
+    }
+  }
+  .slick-prev {
+    left: 5%;
+  }
+  .slick-next {
+    right: 5%;
+    background-position: -35px 0;
+    &:hover,
+    &:focus {
+      background-position: -35px 0;
+    }
+  }
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  background: #252323;
+  height: 75px;
+  width: 100%;
+  footer {
+    padding-top: 30px;
+    width: 963px;
+    margin: auto;
+    color: #c1c1c1;
+  }
+}
