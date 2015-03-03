@@ -3,12 +3,17 @@
 About G_VK
 {% endblock %}
 
-{% block header %}
+{% block head %}
 {{ super() }}
   <link rel="icon" type="image/png" href="/static/images/ico_not_logined.png">
 {% endblock %}
 
+{% block header %}
+{{ super() }}
+{% endblock %}
+
 {% block menu %}
+{{ super() }}
 {% endblock %}
 
 {% block content %}
@@ -19,6 +24,5 @@ About G_VK
 {% endblock %}
 
 {% block footer %}
-<footer></footer>
-<div class="popup-background"></div>
+{{ super() }}
 {% endblock %}

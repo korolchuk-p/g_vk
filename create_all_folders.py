@@ -43,6 +43,7 @@ args:
 
 folders_list = ['static',
 				'static/images',
+				'content',
 				'static/js',
 				'static/css',
 				'apache',
