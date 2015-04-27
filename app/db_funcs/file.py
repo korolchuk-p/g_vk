@@ -37,7 +37,7 @@ def get_file(f_id=None, link=None):
     cur = db.cursor()
     if link:
         cur.execute("SELECT `filename`, `path`, `type`, `secure`, `link`, `id`, `date_added`"
-                    " FROM `files` WHERE `link` = '{0}'".format(link))
+                    " FROM `files` WHERE BINARY `link` = '{0}'".format(link))
     else:
         cur.execute("SELECT `filename`, `path`, `type`, `secure`, `link`, `id`, `date_added`"
                     " FROM `files` WHERE `id` = '{0}'".format(f_id))
@@ -112,7 +112,7 @@ def check_link(link):
     db = db_con()
     cur = db.cursor()
 
-    cur.execute("SELECT `id` FROM `files` WHERE `link`='{0}'".format(link))
+    cur.execute("SELECT `id` FROM `files` WHERE BINARY `link`='{0}'".format(link))
     resp = cur.fetchall()
     if resp:
         return resp[0][0]
