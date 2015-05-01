@@ -179,5 +179,14 @@ $(document).ready(function() {
       speed: 900
     });
 
-});
+  $(window).bind('load resize', function() {
+    $('.footer').removeClass('static');
+    var windowHeight = $(this).height();
+    var contentHeight = $('body').height();
+    var footerHeight = $('.footer').height();
+    if (windowHeight < contentHeight + footerHeight) {
+      $('.footer').addClass('static');
+    }
+  });
 
+});

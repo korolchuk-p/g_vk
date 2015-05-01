@@ -55,7 +55,7 @@ header {
     }
     li {
       float: left;
-      a {
+      > a {
         color: $grey;
         font-size: 14px;
         font-weight: normal;
@@ -66,10 +66,26 @@ header {
         height: 45px;
       }
       &:hover {
-        a {
+        > a {
           color: $blue;
           border-bottom: 2px solid;
         }
+      }
+      .exit {
+        padding-top: 1px;
+        font-size: 18px;
+        padding-left: 8px;
+        padding-right: 7px;
+        padding-bottom: 4px;
+        border-radius: 100%;
+        position: absolute;
+        top: -9px;
+        right: -12px;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #0095C6;
+        @include box-shadow(-1px 2px 3px #333333);
+        font-weight: bold;
       }
     }
   }
@@ -151,5 +167,8 @@ header {
     width: 963px;
     margin: auto;
     color: #c1c1c1;
+  }
+  &.static {
+    position: static;
   }
 }
